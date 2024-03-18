@@ -12,10 +12,22 @@ body {
 
 .col {
 	flex: 1;
-	background-color: #ccc;
 	display: flex;
 	flex-direction: column;
 	justify-content: space-around;
 	align-items: center;
 	border: 2px solid black;
+	background: darkred;
+}
+
+.col h2 {
+	padding: 10px;
+	color: #fff;
+	border-radius: 10px;
+	transition: background 0.3s;
+}
+
+.col h2:hover {
+	background: rgba(0, 0, 0, 0.1);
+	cursor: pointer;
 }
