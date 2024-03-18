@@ -1,3 +1,5 @@
+const cols = document.querySelectorAll('.col');
+
 function generateRandomColor() {
 	const hexCodes = '123456789ABCDF';
 	let color = '';
@@ -7,3 +9,8 @@ function generateRandomColor() {
 	return '#' + color;
 }
 
+function setRandomColors() {
+	cols.forEach(col => col.style.background = generateRandomColor());
+}
+
+setRandomColors();
