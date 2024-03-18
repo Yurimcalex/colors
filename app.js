@@ -13,9 +13,11 @@ function setRandomColors() {
 	cols.forEach(col => {
 		const color = chroma.random(); //generateRandomColor();
 		const text = col.querySelector('h2');
+		const btn = col.querySelector('button');
 		col.style.background = color;
 		text.textContent = color;
 		setTextColor(text, color);
+		setTextColor(btn, color);
 	});
 }
 
