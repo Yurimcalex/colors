@@ -15,7 +15,13 @@ function setRandomColors() {
 		const text = col.querySelector('h2');
 		col.style.background = color;
 		text.textContent = color;
+		setTextColor(text, color);
 	});
+}
+
+function setTextColor(text, color) {
+	const luminance = chroma(color).luminance();
+	text.style.color = luminance > 0.5 ? 'black' : 'white';
 }
 
 setRandomColors();
