@@ -31,19 +31,31 @@ function generateRandomColor() {
 	return '#' + color;
 }
 
-function setRandomColors() {
-	cols.forEach(col => {
-		const isLocked = col.querySelector('i').classList.contains('fa-lock');
-		if (isLocked) return;
+function setRandomColors(isInitial) {
+	const colors = isInitial ? getColorsFromHash() : [];
 
-		const color = chroma.random(); //generateRandomColor();
+	cols.forEach((col, i) => {
+		const isLocked = col.querySelector('i').classList.contains('fa-lock');
 		const text = col.querySelector('h2');
+
+		if (isLocked) {
+			colors.push(text.textContent);
+			return;
+		}
+
+		const color = isInitial 
+			? (colors[i] ? colors[i] : chroma.random()) 
+			: chroma.random(); //generateRandomColor();
+		if (!isInitial) colors.push(color);
+		
 		const btn = col.querySelector('button');
 		col.style.background = color;
 		text.textContent = color;
 		setTextColor(text, color);
 		setTextColor(btn, color);
 	});
+
+	updateColorsHash(colors);
 }
 
 function setTextColor(text, color) {
@@ -55,4 +67,15 @@ function copyToClickboard(text) {
 	return navigator.clipboard.writeText(text);
 }
 
-setRandomColors();
+function updateColorsHash(colors = []) {
+	document.location.hash = colors.map(c => c.toString().substring(1)).join('-');
+}
+
+function getColorsFromHash() {
+	if (document.location.hash.length > 1) {
+		return document.location.hash.substring(1).split('-').map(h => '#' + h);
+	}
+	return [];
+}
+
+setRandomColors(true);
