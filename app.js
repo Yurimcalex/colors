@@ -45,14 +45,17 @@ function setRandomColors(isInitial) {
 			return;
 		}
 		
-		text.textContent = color;
-
+		setText(text, color);
 		setBgColor(col, color);
 		setTextColor(text, color);
 		setTextColor(btn, color);
 	});
 
 	updateColorsHash(colors);
+}
+
+function setText(elm, text) {
+	elm.textContent = text;
 }
 
 function getColors(isInitial) {
