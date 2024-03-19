@@ -20,7 +20,7 @@ document.addEventListener('click', (event) => {
 });
 
 function onSetColors(e) {
-	if (event.code.toLowerCase() === 'space') setRandomColors();
+	if (e.code.toLowerCase() === 'space') setRandomColors();
 }
 
 function onToggleColorLock(e) {
