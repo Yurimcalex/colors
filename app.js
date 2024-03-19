@@ -32,23 +32,18 @@ function generateRandomColor() {
 }
 
 function setRandomColors(isInitial) {
-	const colors = isInitial ? getColorsFromHash() : [];
+	const colors = getColors(isInitial);
 
 	cols.forEach((col, i) => {
-		const isLocked = col.querySelector('i').classList.contains('fa-lock');
+		const btn = col.querySelector('button');
 		const text = col.querySelector('h2');
+		const color = colors[i];
+		const isLocked = col.querySelector('i').classList.contains('fa-lock');
 
 		if (isLocked) {
-			colors.push(text.textContent);
+			colors[i] = text.textContent;
 			return;
 		}
-
-		const color = isInitial 
-			? (colors[i] ? colors[i] : chroma.random()) 
-			: chroma.random(); //generateRandomColor();
-		if (!isInitial) colors.push(color);
-		
-		const btn = col.querySelector('button');
 		
 		text.textContent = color;
 
@@ -58,6 +53,16 @@ function setRandomColors(isInitial) {
 	});
 
 	updateColorsHash(colors);
+}
+
+function getColors(isInitial) {
+	const colors = isInitial ? getColorsFromHash() : [];
+	if (!colors.length) {
+		for (let i = 0; i < 6; i += 1) {
+			colors.push(chroma.random());
+		}
+	}
+	return colors;
 }
 
 function setBgColor(elm, color) {
