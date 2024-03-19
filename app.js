@@ -1,8 +1,29 @@
 const cols = document.querySelectorAll('.col');
 
 document.addEventListener('keydown', onSetColors);
+document.addEventListener('click', onToggleColorLock);
 
 document.addEventListener('click', (event) => {
+	const type = event.target.dataset.type;
+	if (type === 'lock') {
+		// const node 
+		// 	= event.target.tagName.toLowerCase() === 'i'
+		// 		? event.target
+		// 		: event.target.children[0];
+
+		// node.classList.toggle('fa-lock-open');
+		// node.classList.toggle('fa-lock');
+		// document.activeElement.blur();
+	} else if (type === 'copy') {
+		copyToClickboard(event.target.textContent);
+	}
+});
+
+function onSetColors(e) {
+	if (event.code.toLowerCase() === 'space') setRandomColors();
+}
+
+function onToggleColorLock(e) {
 	const type = event.target.dataset.type;
 	if (type === 'lock') {
 		const node 
@@ -13,13 +34,7 @@ document.addEventListener('click', (event) => {
 		node.classList.toggle('fa-lock-open');
 		node.classList.toggle('fa-lock');
 		document.activeElement.blur();
-	} else if (type === 'copy') {
-		copyToClickboard(event.target.textContent);
-	}
-});
-
-function onSetColors(e) {
-	if (event.code.toLowerCase() === 'space') setRandomColors();
+	} 
 }
 
 
