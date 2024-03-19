@@ -5,3 +5,4 @@
 ## Changes
 
 - Refactored the original code base
+- Created status bar feature
