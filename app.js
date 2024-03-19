@@ -1,10 +1,6 @@
 const cols = document.querySelectorAll('.col');
 
-document.addEventListener('keydown', (event) => {
-	if (event.code.toLowerCase() === 'space') {
-		setRandomColors();
-	}
-});
+document.addEventListener('keydown', onSetColors);
 
 document.addEventListener('click', (event) => {
 	const type = event.target.dataset.type;
@@ -21,6 +17,11 @@ document.addEventListener('click', (event) => {
 		copyToClickboard(event.target.textContent);
 	}
 });
+
+function onSetColors(e) {
+	if (event.code.toLowerCase() === 'space') setRandomColors();
+}
+
 
 function setRandomColors(isInitial) {
 	const colors = getColors(isInitial);
