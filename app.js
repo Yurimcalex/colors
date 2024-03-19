@@ -4,11 +4,11 @@ document.addEventListener('keydown', onSetColors);
 document.addEventListener('click', onToggleColorLock);
 document.addEventListener('click', onCopyText);
 
-setRandomColors(true);
+render(true);
 
 
 function onSetColors(e) {
-	if (e.code.toLowerCase() === 'space') setRandomColors();
+	if (e.code.toLowerCase() === 'space') render();
 }
 
 function onToggleColorLock(e) {
@@ -33,7 +33,7 @@ function onCopyText(e) {
 }
 
 
-function setRandomColors(isInitial) {
+function render(isInitial) {
 	const colors = getColors(isInitial);
 
 	cols.forEach((col, i) => {
