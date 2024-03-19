@@ -28,7 +28,9 @@ function onToggleColorLock(e) {
 function onCopyText(e) {
 	const type = event.target.dataset.type;
 	if (type === 'copy') {
-		copyToClickboard(event.target.textContent);
+		const text = event.target.textContent;
+		copyToClickboard(text);
+		toggleStatusBar(`${text} copied to clipboard!`);
 	}
 }
 
@@ -54,6 +56,13 @@ function render(isInitial) {
 	});
 
 	updateColorsHash(colors);
+}
+
+function toggleStatusBar(text) {
+	const bar = document.querySelector('.status');
+	setText(bar, text);
+	bar.classList.toggle('show-satus');
+	setTimeout(() => bar.classList.toggle('show-satus'), 1000);
 }
 
 function setText(elm, text) {
