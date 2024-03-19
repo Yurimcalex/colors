@@ -49,13 +49,19 @@ function setRandomColors(isInitial) {
 		if (!isInitial) colors.push(color);
 		
 		const btn = col.querySelector('button');
-		col.style.background = color;
+		
 		text.textContent = color;
+
+		setBgColor(col, color);
 		setTextColor(text, color);
 		setTextColor(btn, color);
 	});
 
 	updateColorsHash(colors);
+}
+
+function setBgColor(elm, color) {
+	elm.style.background = color;
 }
 
 function setTextColor(text, color) {
