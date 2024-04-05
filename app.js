@@ -109,3 +109,18 @@ function getColorsFromHash() {
 	}
 	return [];
 }
+
+function saveColors() {
+	let colorList = localStorage.getItem('colorList');
+	let colors = getColorsFromHash();
+	let key = colors.map(color => color.slice(1)).join('');
+	
+	if (colorList) {
+		classList = JSON.parse(colorList);
+	} else {
+		colorList = {};
+	}
+
+	colorList[key] = colors;
+	localStorage.setItem('colorList', JSON.stringify(colorList));
+}
