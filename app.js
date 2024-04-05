@@ -3,9 +3,17 @@ const cols = document.querySelectorAll('.col');
 document.addEventListener('keydown', onSetColors);
 document.addEventListener('click', onToggleColorLock);
 document.addEventListener('click', onCopyText);
+document.addEventListener('click', onSaveColors);
 
 render(true);
 
+function onSaveColors(e) {
+	if ( e.target.dataset.type === 'save' || 
+			 e.target.parentNode.dataset.type === 'save' ) {
+		let colors = saveColors();
+		toggleStatusBar(`Colors ${colors.join(', ')} saved!`);
+	}
+}
 
 function onSetColors(e) {
 	if (e.code.toLowerCase() === 'space') render();
@@ -123,4 +131,5 @@ function saveColors() {
 
 	colorList[key] = colors;
 	localStorage.setItem('colorList', JSON.stringify(colorList));
+	return colors;
 }
