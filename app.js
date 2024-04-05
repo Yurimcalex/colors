@@ -22,6 +22,13 @@ function onToggleColorLock(e) {
 		node.classList.toggle('fa-lock-open');
 		node.classList.toggle('fa-lock');
 		document.activeElement.blur();
+
+		let colorHash = event.target.closest('.col').firstElementChild.textContent;
+		if (node.classList.contains('fa-lock')) {
+			toggleStatusBar(`Color ${colorHash} locked!`);
+		} else {
+			toggleStatusBar(`Color ${colorHash} unlocked!`);
+		}
 	} 
 }
 
