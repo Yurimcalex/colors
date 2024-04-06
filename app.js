@@ -25,7 +25,7 @@ function onDownloadColors(e) {
 		let list = downloadColors();
 		let strHtml = Object.values(list).map(colors => createColorSet(colors)).join('');
 
-		document.querySelector('.colors-container').innerHTML = strHtml;
+		document.querySelector('.colors-container').innerHTML = strHtml || 'No saved colors yet!';
 		document.querySelector('.saved-colors').classList.add('visible');
 		setTimeout(() => toggleStatusBar(`Colors downloaded!`), 500);
 	}
