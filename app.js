@@ -5,8 +5,19 @@ document.addEventListener('click', onToggleColorLock);
 document.addEventListener('click', onCopyText);
 document.addEventListener('click', onSaveColors);
 document.addEventListener('click', onDownloadColors);
+document.addEventListener('click', onRemoveColors);
 
 render(true);
+
+
+function onRemoveColors(e) {
+	if ( e.target.dataset.type === 'remove' || 
+			 e.target.parentNode.dataset.type === 'remove' ) {
+		removeSavedColors();
+		document.querySelector('.colors-container').innerHTML = '';
+		toggleStatusBar(`Colors removed!`);
+	}
+}
 
 function onDownloadColors(e) {
 	if ( e.target.dataset.type === 'download' || 
@@ -160,4 +171,8 @@ function createColorSet(colors) {
 	return `<div class="color-set">
 		${colors.map(color => `<div class="color-small" style="background: ${color}"></div>`).join('')}
 	</div>`;
+}
+
+function removeSavedColors() {
+	localStorage.setItem('colorList', JSON.stringify({}));
 }
