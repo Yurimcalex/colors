@@ -4,8 +4,20 @@ document.addEventListener('keydown', onSetColors);
 document.addEventListener('click', onToggleColorLock);
 document.addEventListener('click', onCopyText);
 document.addEventListener('click', onSaveColors);
+document.addEventListener('click', onDownloadColors);
 
 render(true);
+
+function onDownloadColors(e) {
+	if ( e.target.dataset.type === 'download' || 
+			 e.target.parentNode.dataset.type === 'download' ) {
+		let list = downloadColors();
+		let strHtml = Object.values(list).map(colors => createColorSet(colors)).join('');
+
+		document.querySelector('.colors-container').innerHTML = strHtml;
+		toggleStatusBar(`Colors downloaded!`);
+	}
+}
 
 function onSaveColors(e) {
 	if ( e.target.dataset.type === 'save' || 
@@ -122,9 +134,9 @@ function saveColors() {
 	let colorList = localStorage.getItem('colorList');
 	let colors = getColorsFromHash();
 	let key = colors.map(color => color.slice(1)).join('');
-	
+
 	if (colorList) {
-		classList = JSON.parse(colorList);
+		colorList = JSON.parse(colorList);
 	} else {
 		colorList = {};
 	}
@@ -132,4 +144,20 @@ function saveColors() {
 	colorList[key] = colors;
 	localStorage.setItem('colorList', JSON.stringify(colorList));
 	return colors;
+}
+
+function downloadColors() {
+	let colorList = localStorage.getItem('colorList');
+	if (colorList) {
+		colorList = JSON.parse(colorList);
+	} else {
+		colorList = {};
+	}
+	return colorList;
+}
+
+function createColorSet(colors) {
+	return `<div class="color-set">
+		${colors.map(color => `<div class="color-small" style="background: ${color}"></div>`).join('')}
+	</div>`;
 }

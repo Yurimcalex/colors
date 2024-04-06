@@ -62,20 +62,20 @@ body {
   display: block;
 }
 
+.background {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	background: black;
+	opacity: 0.7;
+}
+
 .settings {
 	position: absolute;
 	top: 0;
 	width: 100%;
 	height: 40px;
 	
-}
-
-.settings .background {
-	position: absolute;
-	width: 100%;
-	height: 100%;
-	background: black;
-	opacity: 0.7;
 }
 
 .settings .button-box {
@@ -102,4 +102,33 @@ body {
 
 .settings button:hover {
 	background: rgba(255, 255, 255, 0.3);
+}
+
+.saved-colors {
+	position: absolute;
+	height: 40px;
+	width: 100%;
+	bottom: 0px;
+}
+
+.saved-colors .colors-container {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding-left: 5px;
+}
+
+.saved-colors .color-set {
+	display: flex;
+	width: 200px;
+	margin-right: 10px;
+	cursor: pointer;
+}
+
+.color-set .color-small {
+	flex: 1;
+	height: 30px;
 }
