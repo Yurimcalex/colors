@@ -35,6 +35,11 @@ function onSaveColors(e) {
 	if ( e.target.dataset.type === 'save' || 
 			 e.target.parentNode.dataset.type === 'save' ) {
 		let colors = saveColors();
+
+		if (document.querySelector('.saved-colors').classList.contains('visible')) {
+			document.querySelector('button[data-type="download"]').click();
+		}
+
 		toggleStatusBar(`Colors ${colors.join(', ')} saved!`);
 	}
 }
