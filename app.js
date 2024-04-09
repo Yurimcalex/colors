@@ -7,8 +7,32 @@ document.addEventListener('click', onSaveColors);
 document.addEventListener('click', onDownloadColors);
 document.addEventListener('click', onRemoveColors);
 document.addEventListener('click', onCloseSavedColors);
+document.addEventListener('click', onClickNext);
+document.addEventListener('click', onClickPrev);
 
 render(true);
+
+let pad = 0, shiftPad = 200;
+
+function onClickNext(e) {
+	if ( e.target.dataset.type === 'next' || 
+			 e.target.parentNode.dataset.type === 'next' ) {
+		let container = document.querySelector('.colors-container');
+		if (pad > container.offsetWidth - pad) return;
+		pad += shiftPad;
+		container.style.marginLeft = -pad + 'px';
+	}
+}
+
+function onClickPrev(e) {
+	if ( e.target.dataset.type === 'prev' || 
+			 e.target.parentNode.dataset.type === 'prev' ) {
+		let container = document.querySelector('.colors-container');
+		pad -= shiftPad;
+		if (pad < 0) pad = 0;
+		container.style.marginLeft = -pad + 'px';
+	}
+}
 
 function onCloseSavedColors(e) {
 	if ( e.target.dataset.type === 'close' || 

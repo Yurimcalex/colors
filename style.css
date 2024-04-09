@@ -112,6 +112,8 @@ body {
 	transition: height 0.3s;
 	color: white;
 	overflow: hidden;
+	display: flex;
+	justify-content: center;
 }
 
 .saved-colors.visible {
@@ -119,36 +121,40 @@ body {
 	overflow: visible;
 }
 
-.saved-colors .colors-container {
+.saved-colors .colors-wrapper {
 	position: absolute;
-	width: 100%;
+	width: 80%;
+	height: 100%;
+	overflow: hidden;
+}
+
+.saved-colors .colors-container {
 	height: 100%;
 	display: flex;
 	align-items: center;
-	justify-content: center;
-	padding-left: 5px;
+	justify-content: flex-start;
+	overflow: hidden;
+	transition: margin .3s;
 }
 
 .saved-colors .color-set {
 	display: flex;
 	width: 200px;
-	margin-right: 10px;
+	flex-shrink: 0;
+	margin-right: 20px;
 	cursor: pointer;
 }
 
 .color-set .color-small {
-	flex: 1;
+	width: 40%;
 	height: 30px;
 }
 
 .saved-colors button {
 	position: absolute;
-	top: -30px;
-	right: 5px;
 	z-index: 1;
 	border: none;
-	background: black;
-	opacity: 0.7;
+	background: transparent;
 	font-size: 1.5rem;
 	color: #fff;
 	padding: 3px 3px 0 3px;
@@ -160,4 +166,21 @@ body {
 
 .saved-colors button:hover {
 	color: #a00448;
+}
+
+.saved-colors button[data-type="close"] {
+	top: -30px;
+	right: 5px;
+	background: black;
+	opacity: 0.7;
+}
+
+.saved-colors button[data-type="next"] {
+	top: 5px;
+	right: 5px;
+}
+
+.saved-colors button[data-type="prev"] {
+	top: 5px;
+	left: 5px;
 }
