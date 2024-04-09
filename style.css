@@ -8,6 +8,7 @@ body {
 	font-family: "Roboto", sans-serif;
 	height: 100vh;
 	display: flex;
+	overflow: hidden;
 }
 
 .col {
