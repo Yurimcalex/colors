@@ -4,7 +4,6 @@
 
 ## Changes
 
-- Refactored the original code base
 - Created status bar feature
 
 ### Next feautes
@@ -15,3 +14,9 @@
 - [x] Add a close button to the saved colors panel
 - [x] Display the selected set of colors from the saved ones when it gets a click
 - [x] Add next/prev buttons to the saved colors panel
+- [ ] Media queries for smaller screens
+
+#### Fix
+
+- [ ] Bottom panel - when save a new color set and there are a lot of sets then next button doesn't work properly
+- [ ] Status bar - its position and appearance when performing various tasks
