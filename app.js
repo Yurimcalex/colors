@@ -6,9 +6,17 @@ document.addEventListener('click', onCopyText);
 document.addEventListener('click', onSaveColors);
 document.addEventListener('click', onDownloadColors);
 document.addEventListener('click', onRemoveColors);
+document.addEventListener('click', onCloseSavedColors);
 
 render(true);
 
+function onCloseSavedColors(e) {
+	if ( e.target.dataset.type === 'close' || 
+			 e.target.parentNode.dataset.type === 'close' ) {
+		e.target.closest('.saved-colors').classList.remove('visible');;
+		toggleStatusBar(`Saved colors panel closed!`);
+	}
+}
 
 function onRemoveColors(e) {
 	if ( e.target.dataset.type === 'remove' || 
