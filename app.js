@@ -9,11 +9,31 @@ document.addEventListener('click', onRemoveColors);
 document.addEventListener('click', onCloseSavedColors);
 document.addEventListener('click', onClickNext);
 document.addEventListener('click', onClickPrev);
+document.addEventListener('click', onPickColorSet);
 
 render(true);
 
-let pad = 0, shiftPad = 200;
 
+function onPickColorSet(e) {
+	if ( e.target.dataset.type === 'colors' || 
+			 e.target.parentNode.dataset.type === 'colors' ) {
+		let colors = (e.target.dataset.data || e.target.parentNode.dataset.data).split('-');
+		cols.forEach((col, i) => {
+			const btn = col.querySelector('button');
+			const text = col.querySelector('h2');
+			const color = colors[i];
+			setText(text, color);
+			setBgColor(col, color);
+			setTextColor(text, color);
+			setTextColor(btn, color);
+		});
+
+		updateColorsHash(colors);
+		toggleStatusBar(`Color set picked!`);
+	}
+}
+
+let pad = 0, shiftPad = 200;
 function onClickNext(e) {
 	if ( e.target.dataset.type === 'next' || 
 			 e.target.parentNode.dataset.type === 'next' ) {
@@ -206,7 +226,7 @@ function downloadColors() {
 }
 
 function createColorSet(colors) {
-	return `<div class="color-set">
+	return `<div class="color-set" data-type="colors" data-data=${colors.join('-')}>
 		${colors.map(color => `<div class="color-small" style="background: ${color}"></div>`).join('')}
 	</div>`;
 }

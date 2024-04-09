@@ -13,5 +13,5 @@
 - [x] Save a set of colors
 - [x] Show saved color sets
 - [x] Add a close button to the saved colors panel
-- [ ] Display the selected set of colors from the saved ones  when it gets a click
+- [x] Display the selected set of colors from the saved ones when it gets a click
 - [x] Add next/prev buttons to the saved colors panel
