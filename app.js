@@ -38,7 +38,7 @@ function onClickNext(e) {
 	if ( e.target.dataset.type === 'next' || 
 			 e.target.parentNode.dataset.type === 'next' ) {
 		let container = document.querySelector('.colors-container');
-		if (pad > container.offsetWidth - pad) return;
+		if (container.scrollWidth - pad <= container.parentNode.offsetWidth) return;
 		pad += shiftPad;
 		container.style.marginLeft = -pad + 'px';
 	}
