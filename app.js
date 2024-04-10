@@ -90,6 +90,10 @@ function onSaveColors(e) {
 	if ( e.target.dataset.type === 'save' || 
 			 e.target.parentNode.dataset.type === 'save' ) {
 		let colors = saveColors();
+		if (!colors.length) {
+			toggleStatusBar(`The colors already have been saved!`);
+			return;
+		}
 
 		if (document.querySelector('.saved-colors').classList.contains('visible')) {
 			document.querySelector('button[data-type="download"]').click();
@@ -212,6 +216,8 @@ function saveColors() {
 	} else {
 		colorList = {};
 	}
+
+	if (key in colorList) return [];
 
 	colorList[key] = colors;
 	localStorage.setItem('colorList', JSON.stringify(colorList));
