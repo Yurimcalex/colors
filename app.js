@@ -65,8 +65,11 @@ function onCloseSavedColors(e) {
 function onRemoveColors(e) {
 	if ( e.target.dataset.type === 'remove' || 
 			 e.target.parentNode.dataset.type === 'remove' ) {
+		let container = document.querySelector('.colors-container')
 		removeSavedColors();
-		document.querySelector('.colors-container').innerHTML = '';
+		container.innerHTML = '';
+		container.style.marginLeft = 0 + 'px';
+		pad = 0;
 		toggleStatusBar(`Colors removed!`);
 	}
 }
