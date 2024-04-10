@@ -54,10 +54,12 @@ function onClickPrev(e) {
 	}
 }
 
+let isOpened = false;
 function onCloseSavedColors(e) {
 	if ( e.target.dataset.type === 'close' || 
 			 e.target.parentNode.dataset.type === 'close' ) {
-		e.target.closest('.saved-colors').classList.remove('visible');;
+		e.target.closest('.saved-colors').classList.remove('visible');
+		isOpened = false;
 		toggleStatusBar(`Saved colors panel closed!`);
 	}
 }
@@ -82,7 +84,10 @@ function onDownloadColors(e) {
 
 		document.querySelector('.colors-container').innerHTML = strHtml || 'No saved colors yet!';
 		document.querySelector('.saved-colors').classList.add('visible');
-		setTimeout(() => toggleStatusBar(`Colors downloaded!`), 500);
+		if (!isOpened) {
+			setTimeout(() => toggleStatusBar(`Colors downloaded!`), 500);
+			isOpened = true;
+		}
 	}
 }
 
