@@ -52,3 +52,22 @@ class Columns {
 		document.activeElement.blur();
 	}
 }
+
+
+class Storage {
+	static getColorsFromHash() {
+		if (document.location.hash.length > 1) {
+			return document.location.hash
+				.substring(1)
+				.split('-')
+				.map(h => '#' + h);
+		}
+		return [];
+	}
+
+	static updateColorsHash(colors = []) {
+		document.location.hash = colors
+			.map(c => c.toString().substring(1))
+			.join('-');
+	}
+}
