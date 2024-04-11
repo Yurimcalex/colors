@@ -169,8 +169,8 @@ function render(isInitial) {
 function toggleStatusBar(text) {
 	const bar = document.querySelector('.status');
 	setText(bar, text);
-	bar.classList.toggle('show-satus');
-	setTimeout(() => bar.classList.toggle('show-satus'), 1000);
+	bar.classList.toggle('show');
+	setTimeout(() => bar.classList.toggle('show'), 1000);
 }
 
 function setText(elm, text) {

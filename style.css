@@ -20,7 +20,6 @@ body {
 	font-size: 1.5rem;
 	color: #fff;
 	transition: background 0.3s;
-	
 }
 
 .button:hover {
@@ -60,8 +59,8 @@ body {
   text-align: center;
 }
 
-.show-satus {
-  display: block;
+.status.show {
+	display: block;
 }
 
 .background {
