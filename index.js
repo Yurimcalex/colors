@@ -157,6 +157,7 @@ let status = new Status();
 let controller = new Controller();
 
 controller.init();
+
 controller.on('lock', function (e) {
 	let col = e.target.closest('.col');
 	let index = [...app.columns.cols].findIndex(c => c === col);
@@ -167,4 +168,10 @@ controller.on('lock', function (e) {
 	} else {
 		status.toggle(`Color ${hash} unlocked!`);
 	}
+});
+
+controller.on('copy',function (e) {
+	let text = e.target.textContent;
+	navigator.clipboard.writeText(text);
+	status.toggle(`${text} copied to clipboard!`);
 });
