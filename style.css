@@ -139,7 +139,7 @@ body {
 	cursor: pointer;
 }
 
-.color-set .color-small {
+.saved-colors .color-small {
 	width: 40%;
 	height: 30px;
 }
