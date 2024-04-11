@@ -129,28 +129,42 @@ class Status {
 }
 
 
-const app = new App();
-const status = new Status();
-app.start();
-
-document.addEventListener('keydown', function (e) {
-	if (e.code.toLowerCase() === 'space') {
-		app.update();
-		status.toggle('Colors updated!');
+class Controller {
+	_isButton(eventType, e) {
+		return e.target.dataset.type === eventType ||
+					 e.target.parentNode.dataset.type === eventType;
 	}
-});
 
-document.addEventListener('click', function (e) {
-	if ( e.target.dataset.type === 'lock' || 
-			 e.target.parentNode.dataset.type === 'lock' ) {
-		let col = e.target.closest('.col');
-		let index = [...app.columns.cols].findIndex(c => c === col);
-		app.toggleColorLock(index);
-		let hash = col.firstElementChild.textContent;
-		if (col.querySelector('i').classList.contains('fa-lock')) {
-			status.toggle(`Color ${hash} locked!`);
-		} else {
-			status.toggle(`Color ${hash} unlocked!`);
-		}
+	init() {
+		app.start();
+		document.addEventListener('keydown', (e) => {
+			if (e.code.toLowerCase() === 'space') {
+				app.update();
+				status.toggle('Colors updated!');
+			}
+		});
+	}
+
+	on(eventType, handler) {
+		document.addEventListener('click', (e) => {
+			if (this._isButton(eventType, e)) handler(e);
+		});
+	}
+}
+
+let app = new App();
+let status = new Status();
+let controller = new Controller();
+
+controller.init();
+controller.on('lock', function (e) {
+	let col = e.target.closest('.col');
+	let index = [...app.columns.cols].findIndex(c => c === col);
+	let hash = col.firstElementChild.textContent;
+	app.toggleColorLock(index);
+	if (col.querySelector('i').classList.contains('fa-lock')) {
+		status.toggle(`Color ${hash} locked!`);
+	} else {
+		status.toggle(`Color ${hash} unlocked!`);
 	}
 });
