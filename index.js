@@ -317,3 +317,8 @@ controller.on('remove', function (e) {
 	status.toggle(`Colors removed!`);
 });
 
+controller.on('colors', function (e) {
+	let colors = colorsSet.getColors(e.target);
+	app.setColors(colors);
+	status.toggle(`Color set picked!`);
+});
