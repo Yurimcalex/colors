@@ -311,3 +311,9 @@ controller.on('prev', function (e) {
 	colorsSet.scrollBack();
 });
 
+controller.on('remove', function (e) {
+	storage.clear();
+	colorsSet.clear();
+	status.toggle(`Colors removed!`);
+});
+
