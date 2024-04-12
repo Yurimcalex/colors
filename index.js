@@ -298,3 +298,16 @@ controller.on('save', function (e) {
 	status.toggle(`Colors ${colors.join(', ')} saved!`);
 });
 
+controller.on('close', function (e) {
+	colorsSet.hide();
+	status.toggle(`Saved colors panel closed!`);
+});
+
+controller.on('next', function (e) {
+	colorsSet.scrollForward();
+});
+
+controller.on('prev', function (e) {
+	colorsSet.scrollBack();
+});
+
