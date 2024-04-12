@@ -286,3 +286,15 @@ controller.on('download', function (e) {
 	}
 });
 
+controller.on('save', function (e) {
+	let colors = storage.save();
+	if (!colors.length) {
+		status.toggle(`The colors already have been saved!`);
+		return;
+	}
+	if (colorsSet.isOpened) {
+		document.querySelector('button[data-type="download"]').click();
+	}
+	status.toggle(`Colors ${colors.join(', ')} saved!`);
+});
+
