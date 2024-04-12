@@ -22,6 +22,12 @@ class App {
 		this.state.colors.forEach(c => c.generate());
 	}
 
+	setColors(colors) {
+		this.state.colors = colors.map(c => new Color(c));
+		this.columns.apply(this._getColors());
+		Storage.updateColorsHash(colors);
+	}
+
 	start() {
 		this._createColors();
 		this.columns.apply(this._getColors());
