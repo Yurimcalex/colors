@@ -253,6 +253,8 @@ class Controller {
 
 let app = new App();
 let status = new Status();
+let storage = new LocalStorage();
+let colorsSet = new ColorsSet();
 let controller = new Controller();
 
 controller.init();
@@ -269,8 +271,18 @@ controller.on('lock', function (e) {
 	}
 });
 
-controller.on('copy',function (e) {
+controller.on('copy', function (e) {
 	let text = e.target.textContent;
 	navigator.clipboard.writeText(text);
 	status.toggle(`${text} copied to clipboard!`);
 });
+
+controller.on('download', function (e) {
+	let colorList = storage.download();
+	colorsSet.render(colorList);
+	if (!colorsSet.isOpened) {
+		setTimeout(() => status.toggle(`Colors downloaded!`), 500);
+		colorsSet.isOpened = true;
+	}
+});
+
