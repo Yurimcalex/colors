@@ -2,12 +2,18 @@
 
 [Origin](https://www.youtube.com/watch?v=OaNICHKM5KM)
 
-## Changes
+## UI changes
 
-- Create status bar feature
+- Settings panel
+- Colors sets panel - to display saved colors sets
+- Status bar
+
+## New features
+
+- Show status bar
 - Save a set of colors
 - Show saved color sets
-- Remove all saved color sets
+- Delete all saved color sets
 
 ### Next feautes
 
@@ -19,8 +25,3 @@
 - [x] Add next/prev buttons to the saved colors panel
 - [ ] Media queries for smaller screens
 - [ ] Remove a set of colors separately from others
-
-#### Fix
-
-- [x] Bottom panel - when save a new color set and there are a lot of sets then next button doesn't work properly
-- [x] Status bar - its position and appearance when performing various tasks
