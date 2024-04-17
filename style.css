@@ -111,10 +111,11 @@ body {
 	overflow: hidden;
 	display: flex;
 	justify-content: center;
+	align-items: center;
 }
 
 .saved-colors.visible {
-	height: 40px;
+	height: 60px;
 	overflow: visible;
 }
 
@@ -139,12 +140,13 @@ body {
 	width: 200px;
 	flex-shrink: 0;
 	margin-right: 20px;
+	border: 1px solid gray;
 	cursor: pointer;
 }
 
 .saved-colors .color-small {
 	width: 40%;
-	height: 30px;
+	height: 40px;
 }
 
 .saved-colors .button {
@@ -152,26 +154,27 @@ body {
 	z-index: 1;
 	padding: 3px 3px 0 3px;
 	border-radius: 5px 5px 0 0;
+	transition: color transform 0.5s;
 }
 
 .saved-colors .button:hover {
-	background: none;
-	color: #a00448;
+	transform: scale(1.2);
+	background: transparent;
+	color: #92a877;
 }
 
 .saved-colors .button[data-type="close"] {
-	top: -30px;
+	top: 0;
 	right: 5px;
 	background: black;
 	opacity: 0.7;
+	transform: translateY(-100%);
 }
 
 .saved-colors .button[data-type="next"] {
-	top: 5px;
-	right: 5px;
+	right: 5%;
 }
 
 .saved-colors .button[data-type="prev"] {
-	top: 5px;
-	left: 5px;
+	left: 5%;
 }
