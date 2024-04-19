@@ -7,6 +7,7 @@
 - Settings panel
 - Colors sets panel - to display saved colors sets
 - Status bar
+- App appearance in portrait orientation
 
 ## New features
 
@@ -23,5 +24,5 @@
 - [x] Add a close button to the saved colors panel
 - [x] Display the selected set of colors from the saved ones when it gets a click
 - [x] Add next/prev buttons to the saved colors panel
-- [ ] Media queries for smaller screens
+- [x] Media queries for smaller screens
 - [ ] Remove a set of colors separately from others
