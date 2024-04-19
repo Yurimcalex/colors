@@ -4,6 +4,7 @@ import { LocalStorage } from './storage.js';
 import ColorsSet from './colors.js';
 import Controller from './controller.js';
 import '../style.css';
+import '../portrait.css';
 
 let app = new App();
 let status = new Status();
@@ -71,6 +72,16 @@ controller.on('next', function (e) {
 
 controller.on('prev', function (e) {
 	colorsSet.scrollBack();
+});
+
+
+controller.on('up', function (e) {
+	colorsSet.scrollUp();
+});
+
+
+controller.on('down', function (e) {
+	colorsSet.scrollDown();
 });
 
 

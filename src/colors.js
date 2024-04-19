@@ -5,6 +5,11 @@ class ColorsSet {
 		this.isOpened = false;
 		this.pad = 0;
 		this.shiftPad = 200;
+		window.addEventListener('resize', () => {
+			this.pad = 0;
+			this.container.style.marginLeft = '';
+			this.container.style.marginTop = '';
+		});
 	}
 
 	_create(colors) {
@@ -44,6 +49,18 @@ class ColorsSet {
 		this.pad -= this.shiftPad;
 		if (this.pad < 0) this.pad = 0;
 		this.container.style.marginLeft = -this.pad + 'px';
+	}
+
+	scrollDown() {
+		this.pad -= this.shiftPad;
+		if (this.pad < 0) this.pad = 0;
+		this.container.style.marginTop = -this.pad + 'px';
+	}
+
+	scrollUp() {
+		if (this.container.scrollHeight - this.pad <= this.container.parentNode.offsetHeight) return;
+		this.pad += this.shiftPad;
+		this.container.style.marginTop = -this.pad + 'px';
 	}
 
 	getColors(target) {
