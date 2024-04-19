@@ -178,3 +178,8 @@ body {
 .saved-colors .button[data-type="prev"] {
 	left: 5%;
 }
+
+.saved-colors .button[data-type="up"],
+.saved-colors .button[data-type="down"] {
+	display: none;
+}
