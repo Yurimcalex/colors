@@ -11,7 +11,7 @@
 
 ## New features
 
-- Show status bar
+- Show a status bar
 - Save a set of colors
 - Show saved color sets
 - Delete all saved color sets
@@ -25,4 +25,19 @@
 - [x] Display the selected set of colors from the saved ones when it gets a click
 - [x] Add next/prev buttons to the saved colors panel
 - [x] Media queries for smaller screens
-- [ ] Remove a set of colors separately from others
+- [x] Remove a saved set of colors separately from others
+
+## Installation
+
+Download the project.
+
+```sh
+git clone https://github.com/Yurimcalex/colors.git
+```
+
+Run the project.
+
+```sh
+npm run watch
+open the dist folder and run Live Server or another utility on the index.html file
+```
