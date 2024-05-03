@@ -55,4 +55,12 @@ export class LocalStorage extends Storage {
 	clear() {
 		localStorage.setItem('colorList', JSON.stringify({}));
 	}
+
+	remove(colors) {
+		let colorList = localStorage.getItem('colorList');
+		let key = colors.split('-').map(color => color.slice(1)).join('');
+		colorList = JSON.parse(colorList);
+		delete colorList[key];
+		localStorage.setItem('colorList', JSON.stringify(colorList));
+	}
 };

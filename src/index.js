@@ -97,3 +97,11 @@ controller.on('colors', function (e) {
 	app.setColors(colors);
 	status.toggle(`Color set picked!`);
 });
+
+
+controller.on('delete', function (e) {
+	let colors = e.target.closest('.color-set').dataset.data;
+	storage.remove(colors);
+	let colorList = storage.download();
+	colorsSet.render(colorList);
+});

@@ -16,6 +16,9 @@ class ColorsSet {
 		return (
 			`<div class="color-set" data-type="colors" data-data=${colors.join('-')}>
 				${colors.map(color => `<div class="color-small" style="background: ${color}"></div>`).join('')}
+				<button class="button" data-type="delete">
+					<i class="fa-regular fa-circle-xmark"></i>
+				</button>
 			</div>`);
 	}
 
