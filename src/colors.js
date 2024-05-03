@@ -13,10 +13,11 @@ class ColorsSet {
 	}
 
 	_create(colors) {
+		let luminance = chroma(colors[2]).luminance();
 		return (
 			`<div class="color-set" data-type="colors" data-data=${colors.join('-')}>
 				${colors.map(color => `<div class="color-small" style="background: ${color}"></div>`).join('')}
-				<button class="button" data-type="delete">
+				<button class="button" data-type="delete" style=color:${luminance > 0.5 ? 'black' : 'white'}>
 					<i class="fa-regular fa-circle-xmark"></i>
 				</button>
 			</div>`);

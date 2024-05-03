@@ -142,6 +142,8 @@ body {
 	margin-right: 20px;
 	border: 1px solid gray;
 	cursor: pointer;
+	align-items: center;
+	justify-content: center;
 }
 
 .saved-colors .color-small {
