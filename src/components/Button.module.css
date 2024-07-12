@@ -1,0 +1,15 @@
+.button {
+	padding: 10px;
+	border: none;
+	border-radius: 10px;
+	outline: none;
+	background: transparent;
+	font-size: 1.5rem;
+	color: inherit;
+	transition: background 0.3s;
+}
+
+.button:hover {
+	background: rgba(0, 0, 0, 0.1);
+	cursor: pointer;
+}
