@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import ColorList from './components/ColorList.jsx';
+import Settings from './components/Settings.jsx';
 import Storage from './storage.js';
 import './app.css';
 
 export default function App() {
-	const [colors, setColors] = useState(Storage.getColorsFromHash());
+	const [colors, setColors] = useState(getInitialColors());
 	const [locks, setLocks] = useState(new Array(5).fill(false));
 
 	const handleKeyDown = (e) => {
@@ -35,10 +36,21 @@ export default function App() {
 	return (
 		<div className="app">
 			<ColorList 
-				initialColors={colors}
+				colors={colors}
 				locks={locks}
 				handleColorLock={handleColorLock}
 			/>
+			<Settings />
 		</div>
 	);
+}
+
+function getInitialColors() {
+	const colors = Storage.getColorsFromHash();
+	if (!colors.length) {
+		for (let i = 0; i < 5; i += 1) {
+			colors.push(chroma.random().toString());
+		}
+	}
+	return colors;
 }
