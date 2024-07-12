@@ -22,7 +22,8 @@ body {
 	outline: none;
 	background: transparent;
 	font-size: 1.5rem;
-	color: #fff;
+	/*color: #fff;*/
+	color: inherit;
 	transition: background 0.3s;
 }
 
@@ -41,7 +42,7 @@ body {
 
 .col h2 {
 	padding: 10px;
-	color: #fff;
+	/*color: #fff;*/
 	border-radius: 10px;
 	transition: background 0.3s;
 }
