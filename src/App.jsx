@@ -4,6 +4,9 @@ import Settings from './components/Settings.jsx';
 import Storage from './storage.js';
 import './app.css';
 
+import styles from './App.module.css';
+
+
 export default function App() {
 	const [colors, setColors] = useState(getInitialColors());
 	const [locks, setLocks] = useState(new Array(5).fill(false));
@@ -34,13 +37,13 @@ export default function App() {
 	}, [locks]);
 
 	return (
-		<div className="app">
+		<div className={styles.app}>
 			<ColorList 
 				colors={colors}
 				locks={locks}
 				handleColorLock={handleColorLock}
 			/>
-			<Settings />
+			{/*<Settings />*/}
 		</div>
 	);
 }
