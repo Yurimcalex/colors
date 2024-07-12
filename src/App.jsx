@@ -5,7 +5,9 @@ import './app.css';
 export default function App() {
 	return (
 		<div className="app">
-			<Color />
+			<>
+				{[1, 2, 3, 4, 5].map(n => <Color key={n} />)}
+			</>
 		</div>
 	);
 }
