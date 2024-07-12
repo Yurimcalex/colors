@@ -1,7 +1,7 @@
 import React from 'react';
 import Button from './Button.jsx';
 
-export default function Color({ color }) {
+export default function Color({ color, lock, onColorLock }) {
 	const luminance = chroma(color).luminance();
 
 	return (
@@ -13,7 +13,10 @@ export default function Color({ color }) {
 			}}
 		>
 			<h2>{color}</h2>
-			<Button icon="fa-solid fa-lock-open" />
+			<Button 
+				icon={`fa-solid ${lock ? 'fa-lock' : 'fa-lock-open'}`}
+				onClick={onColorLock} 
+			/>
 		</div>
 	);
 }
