@@ -41,3 +41,8 @@ Run the project.
 npm run watch
 open the dist folder and run Live Server or another utility on the index.html file
 ```
+
+
+https://hashinteractive.com/blog/complete-guide-to-webpack-configuration-for-react/
+https://stackoverflow.com/questions/63005011/support-for-the-experimental-syntax-jsx-isnt-currently-enabled
+https://blog.logrocket.com/versatile-webpack-configurations-react-application/
