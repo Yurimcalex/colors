@@ -6,6 +6,10 @@
 
 body {
 	font-family: "Roboto", sans-serif;
+	background: lightgray;
+}
+
+.app {
 	height: 100vh;
 	display: flex;
 	overflow: hidden;
