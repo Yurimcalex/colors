@@ -1,5 +1,6 @@
 import React from 'react';
 import Button from './Button.jsx';
+import styles from './Color.module.css';
 
 export default function Color({ color, lock, onColorLock }) {
 	const luminance = chroma(color).luminance();
@@ -11,7 +12,7 @@ export default function Color({ color, lock, onColorLock }) {
 
 	return (
 		<div 
-			className="col"
+			className={styles.column}
 			style={{
 				background: color,
 				color: luminance > 0.5 ? 'black' : 'white'
