@@ -43,7 +43,7 @@ export default function App() {
 				locks={locks}
 				handleColorLock={handleColorLock}
 			/>
-			{/*<Settings />*/}
+			<Settings />
 		</div>
 	);
 }
