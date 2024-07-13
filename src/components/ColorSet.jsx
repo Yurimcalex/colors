@@ -13,7 +13,14 @@ export default function ColorsSet({ colors, onRemove, onSelect }) {
 				></div>
 			))}
 			
-			<Button icon="fa-regular fa-circle-xmark" dataType="delete" onClick={onRemove} />
+			<Button 
+				icon="fa-regular fa-circle-xmark"
+				dataType="delete"
+				onClick={(e) => {
+					e.stopPropagation();
+					onRemove();
+				}} 
+			/>
 		</div>
 	);
 }
