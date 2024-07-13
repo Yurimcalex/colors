@@ -15,6 +15,13 @@ export default function ColorSetList({ colorList, onToggleVisibility, removeSave
 		setPad(pad + shiftPad);
 	};
 
+	const handleBack = () => {
+		const cont = colorsCont.current;
+		let newPad = pad - shiftPad;
+		if (newPad < 0) newPad = 0;
+		setPad(newPad);
+	};
+
 	return (
 		<div className={`${styles['saved-colors']} ${styles.visible}`}>
 			<div className={styles.background}></div>
@@ -42,7 +49,7 @@ export default function ColorSetList({ colorList, onToggleVisibility, removeSave
 			/>
 
 			<Button icon="fa-solid fa-chevron-right" dataType="next" onClick={handleForward} />
-			<Button icon="fa-solid fa-chevron-left" dataType="prev" />
+			<Button icon="fa-solid fa-chevron-left" dataType="prev" onClick={handleBack} />
 			<Button icon="fa-solid fa-chevron-up" dataType="up" />
 			<Button icon="fa-solid fa-chevron-down" dataType="down" />
 		</div>
