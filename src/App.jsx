@@ -68,7 +68,7 @@ export default function App() {
 
 			{showColorSetList && 
 				<ColorSetList
-					colorList={savedColorList}
+					colorList={mapObjToArr(savedColorList)}
 					onToggleVisibility={handleColorSetListVisibility}
 				/>}
 		</div>
@@ -84,4 +84,8 @@ function getInitialColors() {
 		}
 	}
 	return colors;
+}
+
+function mapObjToArr(obj) {
+	return Object.values(obj);
 }
