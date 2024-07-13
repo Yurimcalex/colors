@@ -87,13 +87,14 @@ export default function App() {
 				onRemoveAllSaved={handleRemoveSavedColorList}
 			/>
 
-			{showColorSetList && 
-				<ColorSetList
-					colorList={mapObjToArr(savedColorList)}
-					onToggleVisibility={handleColorSetListVisibility}
-					removeSavedColorSet={handleRemoveSavedColorSet}
-					pickColorSet={handleSavedColorSetPick}
-				/>}
+		
+			<ColorSetList
+				colorList={mapObjToArr(savedColorList)}
+				onToggleVisibility={handleColorSetListVisibility}
+				removeSavedColorSet={handleRemoveSavedColorSet}
+				pickColorSet={handleSavedColorSetPick}
+				isVisible={showColorSetList}
+			/>
 
 			{statusText && <Status text={statusText} />}
 		</div>

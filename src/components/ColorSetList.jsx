@@ -1,10 +1,10 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import Button from './Button.jsx';
 import ColorsSet from './ColorSet.jsx';
 import styles from './ColorSetList.module.css';
 import { LocalStorage } from '../storage.js';
 
-export default function ColorSetList({ colorList, onToggleVisibility, removeSavedColorSet, pickColorSet }) {
+export default function ColorSetList({ colorList, onToggleVisibility, removeSavedColorSet, pickColorSet, isVisible }) {
 	const [pad, setPad] = useState(0);
 	const colorsCont = useRef(null);
 	const shiftPad = 200;
@@ -23,7 +23,7 @@ export default function ColorSetList({ colorList, onToggleVisibility, removeSave
 	};
 
 	return (
-		<div className={`${styles['saved-colors']} ${styles.visible}`}>
+		<div className={`${styles['saved-colors']} ${isVisible ? styles.visible : ''}`}>
 			<div className={styles.background}></div>
 			
 			<div className={styles['colors-wrapper']}>
