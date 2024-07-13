@@ -16,36 +16,20 @@
 	overflow: visible;
 }
 
-.saved-colors .colors-wrapper {
+.colors-wrapper {
 	position: absolute;
 	width: 80%;
 	height: 100%;
 	overflow: hidden;
 }
 
-.saved-colors .colors-container {
+.colors-container {
 	height: 100%;
 	display: flex;
 	align-items: center;
 	justify-content: flex-start;
 	overflow: hidden;
 	transition: margin .3s;
-}
-
-.saved-colors .color-set {
-	display: flex;
-	width: 200px;
-	flex-shrink: 0;
-	margin-right: 20px;
-	border: 1px solid gray;
-	cursor: pointer;
-	align-items: center;
-	justify-content: center;
-}
-
-.saved-colors .color-small {
-	width: 40%;
-	height: 40px;
 }
 
 .saved-colors button {
