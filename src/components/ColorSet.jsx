@@ -6,7 +6,8 @@ export default function ColorsSet({ colors }) {
 	return (
 		<div className={styles['color-set']}>
 			{colors.map(color => (
-				<div 
+				<div
+					key={color}
 					className={styles['color-small']}
 					style={{background: color}}
 				></div>
