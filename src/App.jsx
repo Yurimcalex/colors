@@ -47,6 +47,11 @@ export default function App() {
 		setSavedColorList(storage.download());
 	};
 
+	const handleRemoveSavedColorList = () => {
+		storage.clear();
+		setSavedColorList({});
+	}
+
 	return (
 		<div className={styles.app}>
 			<ColorList 
@@ -58,6 +63,7 @@ export default function App() {
 			<Settings 
 				onToggleColorSetListVisibility={handleColorSetListVisibility}
 				onSaveColors={handleSaveColors}
+				onRemoveAllSaved={handleRemoveSavedColorList}
 			/>
 
 			{showColorSetList && 
