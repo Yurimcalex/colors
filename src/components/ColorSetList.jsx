@@ -4,14 +4,20 @@ import ColorsSet from './ColorSet.jsx';
 import styles from './ColorSetList.module.css';
 import { LocalStorage } from '../storage.js';
 
-export default function ColorSetList({ colorList, onToggleVisibility }) {
+export default function ColorSetList({ colorList, onToggleVisibility, removeSavedColorSet }) {
 	return (
 		<div className={`${styles['saved-colors']} ${styles.visible}`}>
 			<div className={styles.background}></div>
 			
 			<div className={styles['colors-wrapper']}>
 				<div className={styles['colors-container']}>
-					{colorList.map(colors => <ColorsSet key={colors.join('')} colors={colors} />)}
+					{colorList.map(colors => (
+						<ColorsSet 
+							key={colors.join('')}
+							colors={colors}
+							onRemove={() => removeSavedColorSet(colors.join('-'))} 
+						/>
+					))}
 				</div>
 			</div>
 

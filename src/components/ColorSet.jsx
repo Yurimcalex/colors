@@ -2,7 +2,7 @@ import React from 'react';
 import Button from './Button.jsx';
 import styles from './ColorSet.module.css';
 
-export default function ColorsSet({ colors }) {
+export default function ColorsSet({ colors, onRemove }) {
 	return (
 		<div className={styles['color-set']}>
 			{colors.map(color => (
@@ -13,7 +13,7 @@ export default function ColorsSet({ colors }) {
 				></div>
 			))}
 			
-			<Button icon="fa-regular fa-circle-xmark" dataType="delete" />
+			<Button icon="fa-regular fa-circle-xmark" dataType="delete" onClick={onRemove} />
 		</div>
 	);
 }
