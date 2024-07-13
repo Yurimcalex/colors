@@ -2,21 +2,23 @@ import React, { useState, useEffect } from 'react';
 import ColorList from './components/ColorList.jsx';
 import Settings from './components/Settings.jsx';
 import ColorSetList from './components/ColorSetList.jsx';
-import Storage from './storage.js';
+import Storage, { LocalStorage } from './storage.js';
 import './app.css';
 
 import styles from './App.module.css';
 
+const storage = new LocalStorage();
 
 export default function App() {
 	const [colors, setColors] = useState(getInitialColors());
 	const [locks, setLocks] = useState(new Array(5).fill(false));
 	const [showColorSetList, setShowColorSetList] = useState(false);
+	const [savedColorList, setSavedColorList] = useState(storage.download());
 
 	useEffect(() => {
 	  window.addEventListener('keydown', handleKeyDown);
 	  return () => window.removeEventListener('keydown', handleKeyDown);
-	}, [locks]);
+	}, [locks, colors]);
 
 	const handleKeyDown = (e) => {
 		const newColors = [];
@@ -40,6 +42,10 @@ export default function App() {
 
 	const handleColorSetListVisibility = () => setShowColorSetList(!showColorSetList);
 
+	const handleSaveColors = () => {
+		storage.save();
+		setSavedColorList(storage.download());
+	};
 
 	return (
 		<div className={styles.app}>
@@ -51,9 +57,14 @@ export default function App() {
 
 			<Settings 
 				onToggleColorSetListVisibility={handleColorSetListVisibility}
+				onSaveColors={handleSaveColors}
 			/>
 
-			{showColorSetList && <ColorSetList onToggleVisibility={handleColorSetListVisibility} />}
+			{showColorSetList && 
+				<ColorSetList
+					colorList={savedColorList}
+					onToggleVisibility={handleColorSetListVisibility}
+				/>}
 		</div>
 	);
 }
