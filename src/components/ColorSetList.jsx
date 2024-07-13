@@ -1,16 +1,30 @@
-import React from 'react';
+import React, { useState, useRef } from 'react';
 import Button from './Button.jsx';
 import ColorsSet from './ColorSet.jsx';
 import styles from './ColorSetList.module.css';
 import { LocalStorage } from '../storage.js';
 
 export default function ColorSetList({ colorList, onToggleVisibility, removeSavedColorSet }) {
+	const [pad, setPad] = useState(0);
+	const colorsCont = useRef(null);
+	const shiftPad = 200;
+
+	const handleForward = () => {
+		const cont = colorsCont.current;
+		if (cont.scrollWidth - pad <= cont.parentNode.offsetWidth) return;
+		setPad(pad + shiftPad);
+	};
+
 	return (
 		<div className={`${styles['saved-colors']} ${styles.visible}`}>
 			<div className={styles.background}></div>
 			
 			<div className={styles['colors-wrapper']}>
-				<div className={styles['colors-container']}>
+				<div 
+					className={styles['colors-container']}
+					ref={colorsCont}
+					style={{marginLeft: `${-pad}px`}}>
+
 					{colorList.map(colors => (
 						<ColorsSet 
 							key={colors.join('')}
@@ -27,7 +41,7 @@ export default function ColorSetList({ colorList, onToggleVisibility, removeSave
 				onClick={onToggleVisibility}
 			/>
 
-			<Button icon="fa-solid fa-chevron-right" dataType="next" />
+			<Button icon="fa-solid fa-chevron-right" dataType="next" onClick={handleForward} />
 			<Button icon="fa-solid fa-chevron-left" dataType="prev" />
 			<Button icon="fa-solid fa-chevron-up" dataType="up" />
 			<Button icon="fa-solid fa-chevron-down" dataType="down" />
