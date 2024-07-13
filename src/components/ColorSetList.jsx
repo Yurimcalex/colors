@@ -4,7 +4,7 @@ import ColorsSet from './ColorSet.jsx';
 import styles from './ColorSetList.module.css';
 import { LocalStorage } from '../storage.js';
 
-export default function ColorSetList({ colorList, onToggleVisibility, removeSavedColorSet }) {
+export default function ColorSetList({ colorList, onToggleVisibility, removeSavedColorSet, pickColorSet }) {
 	const [pad, setPad] = useState(0);
 	const colorsCont = useRef(null);
 	const shiftPad = 200;
@@ -36,7 +36,8 @@ export default function ColorSetList({ colorList, onToggleVisibility, removeSave
 						<ColorsSet 
 							key={colors.join('')}
 							colors={colors}
-							onRemove={() => removeSavedColorSet(colors.join('-'))} 
+							onRemove={() => removeSavedColorSet(colors.join('-'))}
+							onSelect={() => pickColorSet(colors)}
 						/>
 					))}
 				</div>

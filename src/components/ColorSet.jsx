@@ -2,9 +2,9 @@ import React from 'react';
 import Button from './Button.jsx';
 import styles from './ColorSet.module.css';
 
-export default function ColorsSet({ colors, onRemove }) {
+export default function ColorsSet({ colors, onRemove, onSelect }) {
 	return (
-		<div className={styles['color-set']}>
+		<div className={styles['color-set']} onClick={onSelect}>
 			{colors.map(color => (
 				<div
 					key={color}

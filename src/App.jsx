@@ -57,6 +57,11 @@ export default function App() {
 		setSavedColorList(storage.download());
 	}
 
+	const handleSavedColorSetPick = (colors) => {
+		setColors(colors);
+		Storage.updateColorsHash(colors);
+	};
+
 	return (
 		<div className={styles.app}>
 			<ColorList 
@@ -76,6 +81,7 @@ export default function App() {
 					colorList={mapObjToArr(savedColorList)}
 					onToggleVisibility={handleColorSetListVisibility}
 					removeSavedColorSet={handleRemoveSavedColorSet}
+					pickColorSet={handleSavedColorSetPick}
 				/>}
 		</div>
 	);
