@@ -1,0 +1,92 @@
+.saved-colors {
+	position: absolute;
+	height: 0px;
+	width: 100%;
+	bottom: 0px;
+	transition: height 0.3s;
+	color: white;
+	overflow: hidden;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.visible {
+	height: 60px;
+	overflow: visible;
+}
+
+.saved-colors .colors-wrapper {
+	position: absolute;
+	width: 80%;
+	height: 100%;
+	overflow: hidden;
+}
+
+.saved-colors .colors-container {
+	height: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: flex-start;
+	overflow: hidden;
+	transition: margin .3s;
+}
+
+.saved-colors .color-set {
+	display: flex;
+	width: 200px;
+	flex-shrink: 0;
+	margin-right: 20px;
+	border: 1px solid gray;
+	cursor: pointer;
+	align-items: center;
+	justify-content: center;
+}
+
+.saved-colors .color-small {
+	width: 40%;
+	height: 40px;
+}
+
+.saved-colors button {
+	position: absolute;
+	z-index: 1;
+	padding: 3px 3px 0 3px;
+	border-radius: 5px 5px 0 0;
+	transition: color transform 0.5s;
+}
+
+.saved-colors button:hover {
+	transform: scale(1.2);
+	background: transparent;
+	color: #92a877;
+}
+
+.saved-colors button[data-type="close"] {
+	top: 0;
+	right: 5px;
+	background: black;
+	opacity: 0.7;
+	transform: translateY(-100%);
+}
+
+.saved-colors button[data-type="next"] {
+	right: 5%;
+}
+
+.saved-colors button[data-type="prev"] {
+	left: 5%;
+}
+
+.saved-colors button[data-type="up"],
+.saved-colors button[data-type="down"] {
+	display: none;
+}
+
+.background {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	background: black;
+	opacity: 0.7;
+}
