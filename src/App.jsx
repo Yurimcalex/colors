@@ -73,12 +73,19 @@ export default function App() {
 		//setTimeout(() => setStatusText(''), 1000);
 	};
 
+	const handleCopyColorHash = (e) => {
+		const text = e.target.textContent;
+		navigator.clipboard.writeText(text);
+		displayStatus(`Color hash ${text} copied!`);
+	};
+
 	return (
 		<div className={styles.app}>
 			<ColorList 
 				colors={colors}
 				locks={locks}
 				handleColorLock={handleColorLock}
+				handleColorCopy={handleCopyColorHash}
 			/>
 
 			<Settings 
