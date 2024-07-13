@@ -83,6 +83,7 @@ function getInitialColors() {
 			colors.push(chroma.random().toString());
 		}
 	}
+	Storage.updateColorsHash(colors);
 	return colors;
 }
 
