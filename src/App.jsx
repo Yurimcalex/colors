@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import ColorList from './components/ColorList.jsx';
 import Settings from './components/Settings.jsx';
 import ColorSetList from './components/ColorSetList.jsx';
+import Status from './components/Status.jsx';
 import Storage, { LocalStorage } from './storage.js';
 import './app.css';
 
@@ -14,6 +15,7 @@ export default function App() {
 	const [locks, setLocks] = useState(new Array(5).fill(false));
 	const [showColorSetList, setShowColorSetList] = useState(false);
 	const [savedColorList, setSavedColorList] = useState(storage.download());
+	const [statusText, setStatusText] = useState('');
 
 	useEffect(() => {
 	  window.addEventListener('keydown', handleKeyDown);
@@ -33,11 +35,13 @@ export default function App() {
 			setColors(newColors);
 			Storage.updateColorsHash(newColors);
 			document.activeElement.blur();
+			displayStatus(`New colors - ${newColors.join(', ')} generated!`);
 		}
 	};
 
 	const handleColorLock = (ind) => {
 		setLocks(locks.map((lock, i) => ind === i ? !lock : lock));
+		displayStatus(`Color ${colors[ind]} ${locks[ind] ? 'unlocked': 'locked'}!`);
 	};
 
 	const handleColorSetListVisibility = () => setShowColorSetList(!showColorSetList);
@@ -45,21 +49,30 @@ export default function App() {
 	const handleSaveColors = () => {
 		storage.save();
 		setSavedColorList(storage.download());
+		displayStatus(`Colors ${colors.join(', ')} saved!`);
 	};
 
 	const handleRemoveSavedColorList = () => {
 		storage.clear();
 		setSavedColorList({});
+		displayStatus(`All saved color sets have been deleted!`);
 	}
 
 	const handleRemoveSavedColorSet = (colors) => {
 		storage.remove(colors);
 		setSavedColorList(storage.download());
+		displayStatus(`Color set ${colors} has been removed!`);
 	}
 
 	const handleSavedColorSetPick = (colors) => {
 		setColors(colors);
 		Storage.updateColorsHash(colors);
+		displayStatus(`Color set ${colors.join(', ')} has been picked!`);
+	};
+
+	const displayStatus = (text) => {
+		setStatusText(text);
+		//setTimeout(() => setStatusText(''), 1000);
 	};
 
 	return (
@@ -83,6 +96,8 @@ export default function App() {
 					removeSavedColorSet={handleRemoveSavedColorSet}
 					pickColorSet={handleSavedColorSetPick}
 				/>}
+
+			{statusText && <Status text={statusText} />}
 		</div>
 	);
 }
