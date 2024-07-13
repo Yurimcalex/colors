@@ -11,7 +11,7 @@ export default function ColorSetList({ colorList, onToggleVisibility }) {
 			
 			<div className={styles['colors-wrapper']}>
 				<div className={styles['colors-container']}>
-					{colorList.map(colors => <ColorsSet colors={colors} />)}
+					{colorList.map(colors => <ColorsSet key={colors.join('')} colors={colors} />)}
 				</div>
 			</div>
 
