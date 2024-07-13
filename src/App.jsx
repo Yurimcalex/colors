@@ -4,8 +4,6 @@ import Settings from './components/Settings.jsx';
 import ColorSetList from './components/ColorSetList.jsx';
 import Status from './components/Status.jsx';
 import Storage, { LocalStorage } from './storage.js';
-import './app.css';
-
 import styles from './App.module.css';
 
 const storage = new LocalStorage();
