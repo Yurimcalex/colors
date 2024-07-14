@@ -36,18 +36,23 @@ module.exports = env => ({
 	  	{
 	    	test: /\.css$/i,
 	    	include: path.resolve(__dirname, 'src'),
-	    	exclude: /node_modules/,
-	    	use: [
-	    		'style-loader',
-	    		{
-	    			loader: 'css-loader',
-	    			options: {
-	    				importLoaders: 1,
-	    				modules: true
-	    			}
-	    		}
-	    	]
+	    	exclude: /\.module\.css$/,
+	    	use: ['style-loader', 'css-loader']
 	  	},
+	  	{
+	  	  test: /\.css$/,
+	  	  use: [
+	  	    'style-loader',
+	  	    {
+	  	      loader: 'css-loader',
+	  	      options: {
+	  	        importLoaders: 1,
+	  	          modules: true
+	  	        }
+	  	    }
+	  	  ],
+	  	  include: /\.module\.css$/
+	  	}
 	  ],
 	},
 	plugins: [
