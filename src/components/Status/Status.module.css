@@ -8,3 +8,10 @@
   color: white;
   text-align: center;
 }
+
+@media screen and (orientation:portrait) {
+	.status {
+		top: 0;
+		z-index: 2;
+	}
+}

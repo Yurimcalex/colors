@@ -3,3 +3,9 @@
 	display: flex;
 	overflow: hidden;
 }
+
+@media screen and (orientation:portrait) {
+	.app {
+		flex-direction: column;
+	}
+}
