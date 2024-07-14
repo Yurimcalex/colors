@@ -1,6 +1,6 @@
 import React from 'react';
 import Column from '../Column/Column.jsx';
-import styles from './ColumnList.module.css';
+import styles from './Main.module.css';
 
 export default function ColumnList({ colors, locks, handleColorLock, handleColorCopy }) {
 	const listItems = colors.map((color, ind) => (
@@ -14,8 +14,8 @@ export default function ColumnList({ colors, locks, handleColorLock, handleColor
 	));
 
 	return (
-		<>
+		<div className={styles.container}>
 			{listItems}
-		</>
+		</div>
 	);
 }
