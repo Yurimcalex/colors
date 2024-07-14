@@ -1,0 +1,23 @@
+.container {
+	flex: 1;
+}
+
+.container > div {
+	width: 100%;
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+	align-items: center;
+}
+
+.container h2 {
+	padding: 10px;
+	border-radius: 10px;
+	transition: background 0.3s;
+}
+
+.container h2:hover {
+	background: rgba(0, 0, 0, 0.1);
+	cursor: pointer;
+}
