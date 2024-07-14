@@ -1,5 +1,5 @@
 import React from 'react';
-import Color from './Color.jsx';
+import Color from '../Color/Color.jsx';
 
 export default function ColorList({ colors, locks, handleColorLock, handleColorCopy }) {
 	const listItems = colors.map((color, ind) => (

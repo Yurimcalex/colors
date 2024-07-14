@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import ColorList from './components/ColorList.jsx';
-import Settings from './components/Settings.jsx';
-import ColorSetList from './components/ColorSetList.jsx';
-import Status from './components/Status.jsx';
+import ColorList from './components/ColorList/ColorList.jsx';
+import Settings from './components/Settings/Settings.jsx';
+import ColorSetList from './components/ColorSetList/ColorSetList.jsx';
+import Status from './components/Status/Status.jsx';
 import Storage, { LocalStorage } from './storage.js';
 import styles from './App.module.css';
 

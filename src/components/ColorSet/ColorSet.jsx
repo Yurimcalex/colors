@@ -1,5 +1,5 @@
 import React from 'react';
-import Button from './Button.jsx';
+import Button from '../Button/Button.jsx';
 import styles from './ColorSet.module.css';
 
 export default function ColorsSet({ colors, onRemove, onSelect }) {

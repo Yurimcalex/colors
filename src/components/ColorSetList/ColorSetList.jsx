@@ -1,8 +1,8 @@
 import React, { useState, useRef, useEffect } from 'react';
-import Button from './Button.jsx';
-import ColorsSet from './ColorSet.jsx';
+import Button from '../Button/Button.jsx';
+import ColorsSet from '../ColorSet/ColorSet.jsx';
 import styles from './ColorSetList.module.css';
-import { LocalStorage } from '../storage.js';
+import { LocalStorage } from '../../storage.js';
 
 export default function ColorSetList({ colorList, onToggleVisibility, removeSavedColorSet, pickColorSet, isVisible }) {
 	const [pad, setPad] = useState(0);
