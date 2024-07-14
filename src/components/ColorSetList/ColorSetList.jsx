@@ -5,13 +5,25 @@ import styles from './ColorSetList.module.css';
 import { LocalStorage } from '../../storage.js';
 
 export default function ColorSetList({ colorList, onToggleVisibility, removeSavedColorSet, pickColorSet, isVisible }) {
+	const [isPortrait, setIsPortrait] = useState(isPortraitOrientation());
 	const [pad, setPad] = useState(0);
 	const colorsCont = useRef(null);
 	const shiftPad = 200;
 
+	useEffect(() => {
+		window.addEventListener('resize', handleResize);
+		return () => window.removeEventListener('resize', handleResize);
+	}, [isPortrait]);
+
+	const handleResize = () => {
+		setIsPortrait(isPortraitOrientation());
+		setPad(0);
+	};
+
 	const handleForward = () => {
 		const cont = colorsCont.current;
-		if (cont.scrollWidth - pad <= cont.parentNode.offsetWidth) return;
+		if (!isPortrait && cont.scrollWidth - pad <= cont.parentNode.offsetWidth) return;
+		if (isPortrait && cont.scrollHeight - pad <= cont.parentNode.offsetHeight) return;
 		setPad(pad + shiftPad);
 	};
 
@@ -22,6 +34,13 @@ export default function ColorSetList({ colorList, onToggleVisibility, removeSave
 		setPad(newPad);
 	};
 
+	const style = {};
+	if (isPortrait) {
+		style.marginTop = `${-pad}px`;
+	} else {
+		style.marginLeft = `${-pad}px`;
+	}
+
 	return (
 		<div className={`${styles['saved-colors']} ${isVisible ? styles.visible : ''}`}>
 			<div className={styles.background}></div>
@@ -30,7 +49,7 @@ export default function ColorSetList({ colorList, onToggleVisibility, removeSave
 				<div 
 					className={styles['colors-container']}
 					ref={colorsCont}
-					style={{marginLeft: `${-pad}px`}}>
+					style={style}>
 
 					{colorList.map(colors => (
 						<ColorsSet 
@@ -51,8 +70,12 @@ export default function ColorSetList({ colorList, onToggleVisibility, removeSave
 
 			<Button icon="fa-solid fa-chevron-right" dataType="next" onClick={handleForward} />
 			<Button icon="fa-solid fa-chevron-left" dataType="prev" onClick={handleBack} />
-			<Button icon="fa-solid fa-chevron-up" dataType="up" />
-			<Button icon="fa-solid fa-chevron-down" dataType="down" />
+			<Button icon="fa-solid fa-chevron-up" dataType="up" onClick={handleForward} />
+			<Button icon="fa-solid fa-chevron-down" dataType="down" onClick={handleBack} />
 		</div>
 	);
+}
+
+function isPortraitOrientation() {
+	return window.matchMedia("(orientation: portrait)").matches;
 }

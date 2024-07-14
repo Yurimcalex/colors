@@ -110,6 +110,11 @@
 		display: none;
 	}
 
+	.saved-colors button[data-type="up"],
+	.saved-colors button[data-type="down"] {
+		display: block;
+	}
+
 	.saved-colors button[data-type="up"] {
 		top: 5%;
 	}
