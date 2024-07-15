@@ -4,7 +4,7 @@ import styles from './Settings.module.css';
 
 export default function Settings({ onToggleVisibility, onSaveColors, onRemoveAllSaved }) {
 	return (
-		<div className={styles.container}>
+		<div>
 			<Button icon="fa-solid fa-trash-can" onClick={onRemoveAllSaved} />
 			<Button icon="fa-solid fa-file-arrow-down" onClick={onToggleVisibility} />
 			<Button icon="fa-regular fa-floppy-disk" onClick={onSaveColors} />

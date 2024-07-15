@@ -46,6 +46,10 @@
 		justify-content: flex-start;
 	}
 
+	.content div {
+		text-align: center;
+	}
+
 	.container button {
 		margin-right: 0;
 		margin-top: 15px;
