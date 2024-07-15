@@ -1,4 +1,11 @@
 .set {
 	margin-right: 20px;
-	border: '1px solid gray';
+	border: 1px solid gray;
+}
+
+@media screen and (orientation:portrait) {
+	.set {
+		margin-right: 0;
+		margin-top: 15px;
+	}
 }
