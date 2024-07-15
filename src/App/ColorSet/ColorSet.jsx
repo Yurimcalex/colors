@@ -5,14 +5,14 @@ import styles from './ColorSet.module.css';
 
 export default function ColorSet({ colors, onRemove, onSelect }) {
 	return (
-		<div className={styles.container} onClick={onSelect}>
+		<div className={styles.container} onClick={() => onSelect(colors)}>
 			<Colors colors={colors} />
 			<Button 
 				icon="fa-regular fa-circle-xmark"
 				dataType="delete"
 				onClick={(e) => {
 					e.stopPropagation();
-					onRemove();
+					onRemove(colors.join('-'));
 				}} 
 			/>
 		</div>
