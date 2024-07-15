@@ -11,3 +11,11 @@
 	width: 40px;
 	height: 40px;
 }
+
+
+@media screen and (orientation:portrait) {
+	.container {
+		flex-direction: column;
+		width: initial;
+	}
+}
