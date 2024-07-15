@@ -48,7 +48,7 @@ module.exports = env => ({
 	  	      options: {
 	  	        importLoaders: 1,
 	  	        modules: {
-	  	        	localIdentName: "[local]--[hash:base64:5]",
+	  	        	localIdentName: "[name]_[local]--[hash:base64:5]",
 	  	        }
 	  	      }
 	  	    }
