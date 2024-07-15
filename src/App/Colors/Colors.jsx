@@ -1,5 +1,5 @@
 import React from 'react';
-import Color from '../Color/Color.jsx';
+import Color from '../../components/Color/Color.jsx';
 import styles from './Colors.module.css';
 
 export default function Colors({ colors }) {

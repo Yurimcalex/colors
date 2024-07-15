@@ -1,5 +1,5 @@
 import React from 'react';
-import Column from '../Column/Column.jsx';
+import Column from '../../components/Column/Column.jsx';
 import styles from './Main.module.css';
 
 export default function ColumnList({ colors, locks, handleColorLock, handleColorCopy }) {

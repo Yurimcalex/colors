@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import Main from './Main/Main.jsx';
-import Status from '../components/Status/Status.jsx';
+import Status from './Status/Status.jsx';
 import SettingsPanel from './SettingsPanel/SettingsPanel.jsx';
-import Settings from './Settings/Settings.jsx';
+import Settings from '../components/Settings/Settings.jsx';
 import Storage, { LocalStorage } from '../storage.js';
 
 import SavedColorsPanel from './SavedColorsPanel/SavedColorsPanel.jsx';
