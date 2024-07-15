@@ -6,7 +6,7 @@ export default function ColorSets({ colors, removeSavedColorSet, pickColorSet })
 	return (
 		<>
 			{colors.map(colors => (
-				<div className={styles.set}>
+				<div className={styles.set} key={colors.join()}>
 					<ColorSet colors={colors} onRemove={removeSavedColorSet} onSelect={pickColorSet} />
 				</div>
 			))}
