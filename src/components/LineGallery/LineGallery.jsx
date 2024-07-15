@@ -8,6 +8,16 @@ export default function LineGallery({ children }) {
 	const colorsCont = useRef(null);
 	const shiftPad = 200;
 
+	useEffect(() => {
+		window.addEventListener('resize', handleResize);
+		return () => window.removeEventListener('resize', handleResize);
+	}, [isPortrait]);
+
+	const handleResize = () => {
+		setIsPortrait(isPortraitOrientation());
+		setPad(0);
+	};
+
 	const handleForward = () => {
 		const cont = colorsCont.current;
 		if (!isPortrait && cont.scrollWidth - pad <= cont.parentNode.offsetWidth) return;
@@ -39,8 +49,15 @@ export default function LineGallery({ children }) {
 				</div>
 			</div>
 
-			<Button icon="fa-solid fa-chevron-left" dataType="prev" onClick={handleBack} />
-			<Button icon="fa-solid fa-chevron-right" dataType="next" onClick={handleForward} />
+			<Button
+			 icon={`fa-solid ${isPortrait ? 'fa-chevron-down' : 'fa-chevron-left'}`}
+			 dataType="prev"
+			 onClick={handleBack} />
+			
+			<Button 
+				icon={`fa-solid ${isPortrait ? 'fa-chevron-up' : 'fa-chevron-right'}`}
+				dataType="next" 
+				onClick={handleForward} />
 		</div>
 	);
 };

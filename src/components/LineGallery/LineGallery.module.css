@@ -49,3 +49,30 @@
 	overflow: hidden;
 	transition: margin .3s;
 }
+
+
+@media screen and (orientation:portrait) {
+	.container {
+		height: 100%;
+		left: 0;
+		top: 0;
+	}
+
+	.wrapper {
+		height: 80%;
+	}
+
+	.content {
+		flex-direction: column;
+	}
+
+	.container button[data-type="next"] {
+		right: initial;
+		top: 3%;
+	}
+
+	.container button[data-type="prev"] {
+		left: initial;
+		bottom: 2%;
+	}
+}
