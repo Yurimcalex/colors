@@ -1,7 +1,8 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import {
-	generate, 
+	generate,
+	toggleLock, 
 	selectCurrentColors,
 	selectSavedColors
 } from './colorsSlice.js';
@@ -22,11 +23,17 @@ export default function ColorsPage() {
 		}
 	};
 
+	const handleColorLock = (ind) => {
+		dispatch(toggleLock(ind));
+		document.activeElement.blur();
+	};
+
 	return (
 		<div>
 			<Main 
 				colors={colors}
-				locks={colors}
+				locks={locks}
+				handleColorLock={handleColorLock}
 			/>
 		</div>
 	);
