@@ -1,16 +1,33 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { selectCurrentColors, selectSavedColors } from './colorsSlice.js';
+import {
+	generate, 
+	selectCurrentColors,
+	selectSavedColors
+} from './colorsSlice.js';
+import Main from '../../App/Main/Main.jsx';
 
 export default function ColorsPage() {
-	const colors = useSelector(selectCurrentColors);
-	const savedColors = useSelector(selectSavedColors);
+	const { colors, locks } = useSelector(selectCurrentColors);
+	const dispatch = useDispatch();
 
-	console.log(colors, savedColors);
+	useEffect(() => {
+	  window.addEventListener('keydown', handleKeyDown);
+	  return () => window.removeEventListener('keydown', handleKeyDown);
+	}, [locks, colors]);
+
+	const handleKeyDown = (e) => {
+		if (e.code.toLowerCase() === 'space') {
+			dispatch(generate(colors, locks));
+		}
+	};
 
 	return (
 		<div>
-			OK
+			<Main 
+				colors={colors}
+				locks={colors}
+			/>
 		</div>
 	);
 }
