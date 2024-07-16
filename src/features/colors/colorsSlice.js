@@ -25,9 +25,11 @@ export const colorsSlice = createSlice({
 				state.current.colors = action.payload;
 			},
 			prepare(colors, locks) {
-				return locks.map((lock, ind) => {
-					return lock ? colors[ind] : chroma.random().toString();
-				});
+				return {
+					payload: locks.map((lock, ind) => {
+						return lock ? colors[ind] : chroma.random().toString();
+					})
+				}
 			}
 		},
 
