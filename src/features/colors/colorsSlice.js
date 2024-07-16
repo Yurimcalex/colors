@@ -1,5 +1,7 @@
 import { createSlice, nanoid } from '@reduxjs/toolkit';
-import Storage from '../../storage.js';
+import Storage, { LocalStorage } from '../../storage.js';
+
+const lstore = new LocalStorage();
 
 const initialState = {
 	current: {
@@ -9,11 +11,17 @@ const initialState = {
 	},
 
 	saved: [
-		{
-			id: 1,
-			colors: ['#4682B4', '#5F9EA0', '#ff5733', '#8B4513', '#778899'],
-			locks: [false, false, false, false, false]
-		}
+		// {
+		// 	id: 1,
+		// 	colors: ['#4682B4', '#5F9EA0', '#ff5733', '#8B4513', '#778899'],
+		// 	locks: [false, false, false, false, false]
+		// },
+		// {
+		// 	id: 2,
+		// 	colors: ['#3682B4', '#549EA0', '#f65733', '#1B4513', '#758899'],
+		// 	locks: [false, false, false, false, false]
+		// },
+		...downloadSavedColors()
 	]
 };
 
@@ -55,11 +63,25 @@ export const colorsSlice = createSlice({
 					payload: colors
 				};
 			}
+		},
+
+		removeColors: {
+			reducer(state, action) {
+				const colors = action.payload;
+				const ind = state.saved.findIndex(set => set.colors.join('') === colors.join(''));
+				state.saved.splice(ind, 1);
+			},
+			prepare(colors_str) {
+				lstore.remove(colors_str);
+				return {
+					payload: colors_str.split('-')
+				};	
+			}
 		}
 	}
 });
 
-export const { generate, toggleLock, pickColors } = colorsSlice.actions;
+export const { generate, toggleLock, pickColors, removeColors } = colorsSlice.actions;
 
 export default colorsSlice.reducer;
 
@@ -77,4 +99,13 @@ function getInitialColors() {
 	}
 	Storage.updateColorsHash(colors);
 	return colors;
+}
+
+function downloadSavedColors() {
+	let colorsList = lstore.download();
+	return Object.values(colorsList).map((colors, ind) => ({
+		id: ind,
+		colors,
+		locks: [false, false, false, false, false]
+	}));
 }
