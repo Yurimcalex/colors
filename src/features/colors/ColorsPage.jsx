@@ -28,12 +28,18 @@ export default function ColorsPage() {
 		document.activeElement.blur();
 	};
 
+	const handleCopyColorHash = (e) => {
+		const text = e.target.textContent;
+		navigator.clipboard.writeText(text);
+	};
+
 	return (
 		<div>
 			<Main 
 				colors={colors}
 				locks={locks}
 				handleColorLock={handleColorLock}
+				handleColorCopy={handleCopyColorHash}
 			/>
 		</div>
 	);
