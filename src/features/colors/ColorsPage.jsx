@@ -3,10 +3,11 @@ import { useSelector, useDispatch } from 'react-redux';
 import {
 	generate,
 	toggleLock, 
-	selectCurrentColors,
-	selectSavedColors
+	selectCurrentColors
 } from './colorsSlice.js';
+
 import Main from '../../App/Main/Main.jsx';
+import SavedColors from './SavedColors.jsx';
 
 export default function ColorsPage() {
 	const { colors, locks } = useSelector(selectCurrentColors);
@@ -41,6 +42,8 @@ export default function ColorsPage() {
 				handleColorLock={handleColorLock}
 				handleColorCopy={handleCopyColorHash}
 			/>
+
+			<SavedColors />
 		</div>
 	);
 }
