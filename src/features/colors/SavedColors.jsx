@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { pickColors, selectSavedColorsHashes } from './colorsSlice.js';
+import { pickColors, removeColors, selectSavedColorsHashes } from './colorsSlice.js';
 
 import SavedColorsPanel from '../../App/SavedColorsPanel/SavedColorsPanel.jsx';
 import LineGallery from '../../components/LineGallery/LineGallery.jsx';
@@ -16,6 +16,7 @@ export default function SavedColors() {
 				<ColorSets 
 					colors={colorSets}
 					pickColorSet={(colors) => dispatch(pickColors(colors))}
+					removeSavedColorSet={(colors) => dispatch(removeColors(colors))}
 				/>
 			</LineGallery>
 		</SavedColorsPanel>
