@@ -42,11 +42,24 @@ export const colorsSlice = createSlice({
 			const ind = action.payload;
 			const lock = state.current.locks[ind];
 			state.current.locks[ind] = !lock;
+		},
+
+		pickColors: {
+			reducer(state, action) {
+				state.current.colors = action.payload;
+				state.current.locks = [false, false, false, false, false];
+			},
+			prepare(colors) {
+				Storage.updateColorsHash(colors);
+				return {
+					payload: colors
+				};
+			}
 		}
 	}
 });
 
-export const { generate, toggleLock } = colorsSlice.actions;
+export const { generate, toggleLock, pickColors } = colorsSlice.actions;
 
 export default colorsSlice.reducer;
 
