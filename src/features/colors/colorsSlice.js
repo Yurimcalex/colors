@@ -77,11 +77,23 @@ export const colorsSlice = createSlice({
 					payload: colors_str.split('-')
 				};	
 			}
+		},
+
+		saveCurrentColors: {
+			reducer(state, action) {
+				state.saved = action.payload;
+			},
+			prepare() {
+				lstore.save();
+				return {
+					payload: downloadSavedColors()
+				}
+			}
 		}
 	}
 });
 
-export const { generate, toggleLock, pickColors, removeColors } = colorsSlice.actions;
+export const { generate, toggleLock, pickColors, removeColors, saveCurrentColors } = colorsSlice.actions;
 
 export default colorsSlice.reducer;
 
