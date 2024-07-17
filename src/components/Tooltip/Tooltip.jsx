@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import styles from './Tooltip.module.css';
 
-export default function Tooltip({ children, tooltipData }) {
+export default function Tooltip({ children, tooltipData, gap }) {
 	const [anchorElem, setAnchorElem] = useState(null);
 
 	const handleMouseOver = (e) => {
@@ -30,18 +30,19 @@ export default function Tooltip({ children, tooltipData }) {
 				<Bar 
 					text={tooltipText}
 					anchorElem={anchorElem}
+					gap={gap}
 				/>}
 		</div>
 	);
 }
 
 
-function Bar({ text, anchorElem }) {
+function Bar({ text, anchorElem, gap }) {
 	const [coords, setCoords] = useState(null);
 	const bar = useRef(null);
 	
 	useEffect(() => {
-		const coords = getTooltipCoords(anchorElem, bar.current);
+		const coords = getTooltipCoords(anchorElem, bar.current, gap);
 		setCoords(coords);
 	}, [text]);
 
@@ -68,7 +69,7 @@ function Bar({ text, anchorElem }) {
 }
 
 
-function getTooltipCoords(anchorElem, tooltipElem) {
+function getTooltipCoords(anchorElem, tooltipElem, gap) {
 	const anchorCoords = anchorElem.getBoundingClientRect();
 	const docWidth = document.documentElement.clientWidth;
 
@@ -84,9 +85,9 @@ function getTooltipCoords(anchorElem, tooltipElem) {
 		pointer = tooltipElem.offsetWidth - anchorElem.offsetWidth / 2;
 	}
 
-	let top = anchorCoords.top - (anchorElem.offsetHeight / 2) - 5;
+	let top = anchorCoords.top - (anchorElem.offsetHeight / 2) - gap;
 	if (top < 0) {
-		top = anchorCoords.bottom + 5;
+		top = anchorCoords.bottom + gap;
 	}
 
 	return {
