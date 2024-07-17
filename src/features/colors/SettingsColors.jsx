@@ -4,17 +4,26 @@ import { saveCurrentColors, removeAllSavedColors } from './colorsSlice.js';
 
 import SettingsPanel from '../../App/SettingsPanel/SettingsPanel.jsx';
 import Settings from '../../components/Settings/Settings.jsx';
+import Tooltip from '../../components/Tooltip/Tooltip.jsx';
 
 export default function SettingsColors({ toggleVisibility }) {
 	const dispatch = useDispatch();
+	
+	const tooltipTexts = [
+		'save-colors',
+		'remove-all-saved-colors',
+		'toggle-saved-colors-panel'
+	];
 
 	return (
 		<SettingsPanel>
-			<Settings
-				onSaveColors={() => dispatch(saveCurrentColors())}
-				onRemoveAllSaved={() => dispatch(removeAllSavedColors())}
-				onToggleVisibility={toggleVisibility}
-			/>
+			<Tooltip tooltipData={tooltipTexts}>
+				<Settings
+					onSaveColors={() => dispatch(saveCurrentColors())}
+					onRemoveAllSaved={() => dispatch(removeAllSavedColors())}
+					onToggleVisibility={toggleVisibility}
+				/>
+			</Tooltip>
 		</SettingsPanel>
 	);
 }
