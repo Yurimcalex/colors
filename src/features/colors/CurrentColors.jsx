@@ -7,11 +7,17 @@ import {
 } from './colorsSlice.js';
 
 import Main from '../../App/Main/Main.jsx';
+import Tooltip from '../../components/Tooltip/Tooltip.jsx';
 
 
 export default function CurrentColors() {
 	const { colors, locks } = useSelector(selectCurrentColors);
 	const dispatch = useDispatch();
+
+	const tooltipTexts = [
+		'copy-to-clipboard',
+		'lock/unlock-color'
+	];
 
 	useEffect(() => {
 	  window.addEventListener('keydown', handleKeyDown);
@@ -35,11 +41,14 @@ export default function CurrentColors() {
 	};
 	
 	return (
-		<Main 
-			colors={colors}
-			locks={locks}
-			handleColorLock={handleColorLock}
-			handleColorCopy={handleCopyColorHash}
-		/>
+		<Tooltip tooltipData={tooltipTexts} gap={3}>
+			<Main 
+				colors={colors}
+				locks={locks}
+				handleColorLock={handleColorLock}
+				handleColorCopy={handleCopyColorHash}
+			/>
+		</Tooltip>
+		
 	);
 }
