@@ -6,12 +6,12 @@ import SavedColorsPanel from '../../App/SavedColorsPanel/SavedColorsPanel.jsx';
 import LineGallery from '../../components/LineGallery/LineGallery.jsx';
 import ColorSets from '../../App/ColorSets/ColorSets.jsx';
 
-export default function SavedColors() {
+export default function SavedColors({ toggleVisibility }) {
 	const dispatch = useDispatch();
 	const colorSets = useSelector(selectSavedColorsHashes);
 
 	return (
-		<SavedColorsPanel>
+		<SavedColorsPanel onToggleVisibility={toggleVisibility}>
 			<LineGallery>
 				<ColorSets 
 					colors={colorSets}
