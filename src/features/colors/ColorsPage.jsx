@@ -1,10 +1,12 @@
 import React from 'react';
 import SavedColors from './SavedColors.jsx';
 import CurrentColors from './CurrentColors.jsx';
+import SettingsColors from './SettingsColors.jsx';
 
 export default function ColorsPage() {
 	return (
 		<div>
+			<SettingsColors />
 			<CurrentColors />
 			<SavedColors />
 		</div>
