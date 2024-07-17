@@ -8,10 +8,16 @@ export default function Tooltip({ children, tooltipData, gap }) {
 		const tooltipText = tooltipData.find(text => text === e.target.dataset.type);
 		if (tooltipText) {
 			setAnchorElem(e.target);
+		} else {
+			if (!e.target.closest("[data-type]")) {
+				setAnchorElem(null);
+			}
 		}
 	};
 
-	const handleMouseLeave = (e) => setAnchorElem(null);
+	const handleMouseLeave = (e) => {
+		if (anchorElem) setAnchorElem(null);
+	}
 	
 
 	let tooltipText;
@@ -44,7 +50,7 @@ function Bar({ text, anchorElem, gap }) {
 	useEffect(() => {
 		const coords = getTooltipCoords(anchorElem, bar.current, gap);
 		setCoords(coords);
-	}, [text]);
+	}, [anchorElem]);
 
 	let top = -100, left = -100, pLeft = 50;
 	if (coords) {
@@ -85,14 +91,16 @@ function getTooltipCoords(anchorElem, tooltipElem, gap) {
 		pointer = tooltipElem.offsetWidth - anchorElem.offsetWidth / 2;
 	}
 
-	let top = anchorCoords.top - (anchorElem.offsetHeight / 2) - gap;
-	if (top < 0) {
-		top = anchorCoords.bottom + gap;
-	}
+	// let top = anchorCoords.top - (anchorElem.offsetHeight / 2) - gap;
+	// if (top < 0) {
+	// 	top = anchorCoords.bottom + gap;
+	// }
+
+	let top = anchorCoords.bottom + gap;
 
 	return {
 		x: left,
 		y: top,
-		pLeft: pointer
+		pLeft: pointer - 2.5 // half width of pointer
 	}
 }
