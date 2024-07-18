@@ -36,11 +36,14 @@
 .container button {
 	width: 50px;
 	height: 100px;
-	color: gray;
-	transition: color 0.3s;
 }
 
 .container button:hover {
 	background: transparent;
 	color: lightgray;
+	transition: color 0.3s;
+}
+
+.dark {
+	color: black;
 }

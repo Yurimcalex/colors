@@ -9,8 +9,10 @@ export default function ControllerColors() {
 	const { colors, locks } = useSelector(selectCurrentColors);
 	const dispatch = useDispatch();
 
+	const luminance = chroma(colors[2]).luminance();
+
 	return (
-		<ControllerPanel>
+		<ControllerPanel luminance={luminance}>
 			<Controller
 				onGenerataColors={() => dispatch(generate(colors, locks))}
 				onSaveColors={() => dispatch(saveCurrentColors())}
