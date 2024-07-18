@@ -17,7 +17,7 @@ export default function SettingsColors({ toggleVisibility, visibility }) {
 
 	return (
 		<SettingsPanel>
-			<Tooltip tooltipData={tooltipTexts} gap={-3}>
+			<Tooltip tooltipData={tooltipTexts} gap={2}>
 				<Settings
 					onSaveColors={() => dispatch(saveCurrentColors())}
 					onRemoveAllSaved={() => dispatch(removeAllSavedColors())}
