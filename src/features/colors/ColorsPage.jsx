@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import SavedColors from './SavedColors.jsx';
 import CurrentColors from './CurrentColors.jsx';
 import SettingsColors from './SettingsColors.jsx';
+import ControllerColors from './ControllerColors.jsx';
 
 export default function ColorsPage() {
 	const [isSavedColorsVisible, setIsSavedColorVisible] = useState(false);
@@ -21,6 +22,8 @@ export default function ColorsPage() {
 			/>
 			
 			<CurrentColors showTooltip={showTooltip} />
+
+			<ControllerColors />
 			
 			{isSavedColorsVisible && 
 				<SavedColors 
