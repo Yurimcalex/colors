@@ -9,6 +9,7 @@
 	cursor: pointer;
 	border: 5px solid rgba(0, 0, 0, .1);
 	transition: transform 0.3s;
+	color: white;
 }
 
 .container:hover {
@@ -22,6 +23,10 @@
 .container button:hover {
 	background: transparent;
 	color: lightgray;
+}
+
+.dark {
+	color: black;
 }
 
 

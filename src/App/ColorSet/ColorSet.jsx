@@ -4,8 +4,10 @@ import Button from '../../components/Button/Button.jsx';
 import styles from './ColorSet.module.css';
 
 export default function ColorSet({ colors, onRemove, onSelect }) {
+	const luminance = chroma(colors[2]).luminance();
+
 	return (
-		<div className={styles.container} onClick={() => onSelect(colors)}>
+		<div className={`${styles.container} ${luminance > 0.5 ? styles.dark : ''}`} onClick={() => onSelect(colors)}>
 			<Colors colors={colors} />
 			<Button 
 				icon="fa-solid fa-xmark"
