@@ -6,7 +6,7 @@ import SettingsPanel from '../../App/SettingsPanel/SettingsPanel.jsx';
 import Settings from '../../components/Settings/Settings.jsx';
 import Tooltip from '../../components/Tooltip/Tooltip.jsx';
 
-export default function SettingsColors({ toggleVisibility }) {
+export default function SettingsColors({ toggleVisibility, visibility }) {
 	const dispatch = useDispatch();
 	
 	const tooltipTexts = [
@@ -22,6 +22,7 @@ export default function SettingsColors({ toggleVisibility }) {
 					onSaveColors={() => dispatch(saveCurrentColors())}
 					onRemoveAllSaved={() => dispatch(removeAllSavedColors())}
 					onToggleVisibility={toggleVisibility}
+					visibility={visibility}
 				/>
 			</Tooltip>
 		</SettingsPanel>

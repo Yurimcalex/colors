@@ -2,7 +2,7 @@ import React from 'react';
 import Button from '../../components/Button/Button.jsx';
 import styles from './Settings.module.css';
 
-export default function Settings({ onToggleVisibility, onSaveColors, onRemoveAllSaved }) {
+export default function Settings({ onToggleVisibility, visibility, onSaveColors, onRemoveAllSaved }) {
 	return (
 		<div>
 			<Button 
@@ -12,7 +12,7 @@ export default function Settings({ onToggleVisibility, onSaveColors, onRemoveAll
 			/>
 
 			<Button 
-				icon="fa-solid fa-file-arrow-down"
+				icon={`fa-solid ${visibility ? 'fa-square-caret-down' : 'fa-square-caret-up'}`}
 				dataType="toggle-saved-colors-panel"
 				onClick={onToggleVisibility}
 			/>

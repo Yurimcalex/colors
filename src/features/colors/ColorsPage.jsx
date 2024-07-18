@@ -9,12 +9,17 @@ export default function ColorsPage() {
 
 	return (
 		<div>
-			<SettingsColors toggleVisibility={handleToggleVisibility} />
+			<SettingsColors 
+				toggleVisibility={handleToggleVisibility}
+				visibility={isSavedColorsVisible}
+			/>
 			
 			<CurrentColors />
 			
 			{isSavedColorsVisible && 
-				<SavedColors toggleVisibility={handleToggleVisibility}/>}
+				<SavedColors 
+					toggleVisibility={handleToggleVisibility}
+				/>}
 		</div>
 	);
 }
