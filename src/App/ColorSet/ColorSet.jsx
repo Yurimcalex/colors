@@ -8,7 +8,7 @@ export default function ColorSet({ colors, onRemove, onSelect }) {
 		<div className={styles.container} onClick={() => onSelect(colors)}>
 			<Colors colors={colors} />
 			<Button 
-				icon="fa-regular fa-circle-xmark"
+				icon="fa-solid fa-xmark"
 				dataType="delete"
 				onClick={(e) => {
 					e.stopPropagation();
