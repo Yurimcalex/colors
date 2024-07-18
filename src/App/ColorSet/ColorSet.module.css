@@ -4,6 +4,15 @@
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	border-radius: 7px;
+	overflow: hidden;
+	cursor: pointer;
+	border: 5px solid rgba(0, 0, 0, .1);
+	transition: transform 0.3s;
+}
+
+.container:hover {
+	transform: scale(1.1);
 }
 
 .container button {
@@ -11,9 +20,8 @@
 }
 
 .container button:hover {
-	transform: scale(1.1);
 	background: transparent;
-	color: white;
+	color: lightgray;
 }
 
 
