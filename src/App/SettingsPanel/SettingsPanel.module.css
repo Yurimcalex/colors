@@ -17,6 +17,7 @@
 
 .content button {
 	/*transition: color 0.3s, transform 0.3s;*/
+	margin-left: 5px;
 }
 
 .content button:hover {
