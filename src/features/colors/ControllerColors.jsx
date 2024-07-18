@@ -5,7 +5,7 @@ import { generate, saveCurrentColors, selectCurrentColors } from './colorsSlice.
 import ControllerPanel from '../../App/ControllerPanel/ControllerPanel.jsx';
 import Controller from '../../components/Controller/Controller.jsx';
 
-export default function ControllerColors() {
+export default function ControllerColors({ toggleVisibility, visibility }) {
 	const { colors, locks } = useSelector(selectCurrentColors);
 	const dispatch = useDispatch();
 
@@ -15,7 +15,10 @@ export default function ControllerColors() {
 		<ControllerPanel luminance={luminance}>
 			<Controller
 				onGenerataColors={() => dispatch(generate(colors, locks))}
-				onSaveColors={() => dispatch(saveCurrentColors())}
+				onSaveColors={() => {
+					dispatch(saveCurrentColors());
+					if (!visibility) toggleVisibility();
+				}}
 			/>
 		</ControllerPanel>
 	);

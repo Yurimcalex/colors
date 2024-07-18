@@ -23,7 +23,10 @@ export default function ColorsPage() {
 			
 			<CurrentColors showTooltip={showTooltip} />
 
-			<ControllerColors />
+			<ControllerColors 
+				toggleVisibility={handleToggleVisibility}
+				visibility={isSavedColorsVisible}
+			/>
 			
 			{isSavedColorsVisible && 
 				<SavedColors 
