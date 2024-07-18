@@ -6,7 +6,7 @@ export default function Settings({ onToggleVisibility, visibility, onSaveColors,
 	return (
 		<div>
 			<Button 
-				icon="fa-solid fa-trash-can"
+				icon="fa-solid fa-folder-minus"
 				dataType="remove-all-saved-colors"
 				onClick={onRemoveAllSaved}
 			/>
