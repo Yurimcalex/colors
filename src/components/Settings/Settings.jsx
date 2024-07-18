@@ -18,7 +18,7 @@ export default function Settings({ onToggleVisibility, visibility, onSaveColors,
 			/>
 
 			<Button 
-				icon="fa-regular fa-floppy-disk"
+				icon="fa-solid fa-square-plus"
 				dataType="save-colors"
 				onClick={onSaveColors}
 			/>
