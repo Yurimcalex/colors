@@ -2,9 +2,21 @@ import React from 'react';
 import Button from '../../components/Button/Button.jsx';
 import styles from './Settings.module.css';
 
-export default function Settings({ onToggleVisibility, visibility, onSaveColors, onRemoveAllSaved }) {
+export default function Settings({ 
+	onToggleVisibility, visibility,
+	onSaveColors,
+ 	onRemoveAllSaved,
+ 	onToggleTooltip, showTooltip }) {
+	
 	return (
 		<div>
+			<Button 
+				icon="fa-solid fa-eye"
+				icon={`fa-solid ${showTooltip ? 'fa-eye' : 'fa-eye-slash'}`}
+				dataType="toogle-tooltip"
+				onClick={onToggleTooltip}
+			/>
+
 			<Button 
 				icon="fa-solid fa-folder-minus"
 				dataType="remove-all-saved-colors"

@@ -10,7 +10,7 @@ import Main from '../../App/Main/Main.jsx';
 import Tooltip from '../../components/Tooltip/Tooltip.jsx';
 
 
-export default function CurrentColors() {
+export default function CurrentColors({ showTooltip }) {
 	const { colors, locks } = useSelector(selectCurrentColors);
 	const dispatch = useDispatch();
 
@@ -39,16 +39,19 @@ export default function CurrentColors() {
 		const text = e.target.textContent;
 		navigator.clipboard.writeText(text);
 	};
+
+	const Main_UI = <Main 
+		colors={colors}
+		locks={locks}
+		handleColorLock={handleColorLock}
+		handleColorCopy={handleCopyColorHash}
+	/>
 	
 	return (
-		<Tooltip tooltipData={tooltipTexts} gap={3}>
-			<Main 
-				colors={colors}
-				locks={locks}
-				handleColorLock={handleColorLock}
-				handleColorCopy={handleCopyColorHash}
-			/>
-		</Tooltip>
-		
+		<>
+			{showTooltip 
+				? <Tooltip tooltipData={tooltipTexts} gap={3}>{Main_UI}</Tooltip>
+				: <>{Main_UI}</>}
+		</>
 	);
 }
