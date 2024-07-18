@@ -6,12 +6,18 @@ export default function Settings({
 	onToggleVisibility, visibility,
 	onSaveColors,
  	onRemoveAllSaved,
- 	onToggleTooltip, showTooltip }) {
+ 	onToggleTooltip, showTooltip,
+ 	onGenerataColors }) {
 	
 	return (
 		<div>
 			<Button 
-				icon="fa-solid fa-eye"
+				icon="fa-solid fa-paint-roller"
+				dataType="get-new-colors"
+				onClick={onGenerataColors}
+			/>
+
+			<Button 
 				icon={`fa-solid ${showTooltip ? 'fa-eye' : 'fa-eye-slash'}`}
 				dataType="toogle-tooltip"
 				onClick={onToggleTooltip}
