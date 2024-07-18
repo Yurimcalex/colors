@@ -8,7 +8,7 @@ export default function SavedColorsPanel({ children, onToggleVisibility }) {
 			{children}
 
 			<Button 
-				icon="fa-regular fa-circle-xmark" 
+				icon="fa-solid fa-square-caret-down" 
 				dataType="close"
 				onClick={onToggleVisibility}
 			/>
