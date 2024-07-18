@@ -32,7 +32,10 @@ export default function Settings({
 			<Button 
 				icon="fa-solid fa-square-plus"
 				dataType="save-colors"
-				onClick={onSaveColors}
+				onClick={() => {
+					if (!visibility) onToggleVisibility();
+					onSaveColors();
+				}}
 			/>
 		</div>
 	);
