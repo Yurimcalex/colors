@@ -18,12 +18,13 @@
 .content button {
 	/*transition: color 0.3s, transform 0.3s;*/
 	margin-left: 5px;
+	color: gray;
 }
 
 .content button:hover {
 	transform: scale(1.2);
 	background: transparent;
-	color: #92a877;
+	color: lightgray;
 }
 
 .background {
