@@ -4,6 +4,7 @@ import { generate, saveCurrentColors, selectCurrentColors } from './colorsSlice.
 
 import ControllerPanel from '../../App/ControllerPanel/ControllerPanel.jsx';
 import Controller from '../../components/Controller/Controller.jsx';
+import PressingEffect from '../../components/PressingEffect/PressingEffect.jsx';
 
 export default function ControllerColors({ toggleVisibility, visibility }) {
 	const { colors, locks } = useSelector(selectCurrentColors);
@@ -19,6 +20,7 @@ export default function ControllerColors({ toggleVisibility, visibility }) {
 					dispatch(saveCurrentColors());
 					if (!visibility) toggleVisibility();
 				}}
+				Effect={PressingEffect}
 			/>
 		</ControllerPanel>
 	);
