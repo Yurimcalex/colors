@@ -5,6 +5,7 @@ import { generate, saveCurrentColors, removeAllSavedColors, selectCurrentColors 
 import SettingsPanel from '../../App/SettingsPanel/SettingsPanel.jsx';
 import Settings from '../../components/Settings/Settings.jsx';
 import Tooltip from '../../components/Tooltip/Tooltip.jsx';
+import Logo from '../../components/Logo/Logo.jsx';
 
 export default function SettingsColors({ toggleVisibility, visibility, toogleShowTooltip, showTooltip }) {
 	const { colors, locks } = useSelector(selectCurrentColors);
@@ -30,6 +31,8 @@ export default function SettingsColors({ toggleVisibility, visibility, toogleSho
 
 	return (
 		<SettingsPanel>
+			<Logo />
+			
 			{showTooltip
 				? <Tooltip tooltipData={tooltipTexts} gap={2}>
 						{Settings_UI}				
