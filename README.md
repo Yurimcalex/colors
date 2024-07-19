@@ -6,6 +6,11 @@
 
 Colours app using React and Redux technologies.
 
+## Next features
+
+- [x] Show modal when deleting all saved color sets to confirm the removal.
+- [x] Create a component that plays as a wrapper and makes its target element draggable.
+
 ## Installation
 
 Download the project.
