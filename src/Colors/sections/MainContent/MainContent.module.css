@@ -1,0 +1,10 @@
+.container {
+	height: 100vh;
+	display: flex;
+}
+
+@media screen and (orientation:portrait) {
+	.container {
+		flex-direction: column;
+	}
+}
