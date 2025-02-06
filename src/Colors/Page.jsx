@@ -1,18 +1,25 @@
 import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
+import { selectCurrentColors } from '../features/colors/colorsSlice.js';
 import Header from './sections/Header/Header.jsx';
 import Logo from './components/Logo/Logo.jsx';
 import Settings from './Settings.jsx';
 import Tooltip from './components/Tooltip/Tooltip.jsx';
 import MainContent from './sections/MainContent/MainContent.jsx';
 import Content from './Content.jsx';
+import JoystickPanel from './sections/JoystickPanel/JoystickPanel.jsx';
+import Controller from './Controller.jsx';
 
 
 export default function Page() {
+	const { colors, locks } = useSelector(selectCurrentColors);
 	const [storeDisplayed, setStoreDisplayed] = useState(false);
 	const [tooltipDisplayed, setTooltipDisplayed] = useState(true);
 
 	const toggleStoreDisplay = () => setStoreDisplayed(!storeDisplayed);
 	const toggleTooltipDisplay = () => setTooltipDisplayed(!tooltipDisplayed);
+
+	const luminance = chroma(colors[2]).luminance();
 
 	const settingTooltips = [
 		'save-colors',
@@ -33,6 +40,7 @@ export default function Page() {
 		toggleStoreDisplay={toggleStoreDisplay}
 		toggleTooltipDisplay={toggleTooltipDisplay}
 	/>
+
 
 	return (
 		<div>
@@ -55,6 +63,9 @@ export default function Page() {
 						<Content / >
 					</MainContent>)}
 
+			<JoystickPanel luminance={luminance}>
+				<Controller toggleVisibility={toggleStoreDisplay} visibility={storeDisplayed} />
+			</JoystickPanel>
 		</div>
 	);
 }
