@@ -9,6 +9,9 @@ import MainContent from './sections/MainContent/MainContent.jsx';
 import Content from './Content.jsx';
 import JoystickPanel from './sections/JoystickPanel/JoystickPanel.jsx';
 import Controller from './Controller.jsx';
+import StorePanel from './sections/StorePanel/StorePanel.jsx';
+import Gallery from './components/Gallery/Gallery.jsx';
+import StoredColors from './StoredColors.jsx';
 
 
 export default function Page() {
@@ -63,9 +66,19 @@ export default function Page() {
 						<Content / >
 					</MainContent>)}
 
+
 			<JoystickPanel luminance={luminance}>
 				<Controller toggleVisibility={toggleStoreDisplay} visibility={storeDisplayed} />
 			</JoystickPanel>
+
+			
+			{storeDisplayed && (
+				<StorePanel onToggleVisibility={toggleStoreDisplay}>
+					<Gallery>
+						<StoredColors />
+					</Gallery>
+				</StorePanel>
+			)}
 		</div>
 	);
 }

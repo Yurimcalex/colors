@@ -1,0 +1,39 @@
+.container {
+	position: absolute;
+	bottom: 0px;
+	height: 70px;
+	width: 100%;
+}
+
+.container button[data-type="close"] {
+	position: absolute;
+	top: 0;
+	right: 5px;
+	padding: 3px 3px 0 3px;
+	border-radius: 5px 5px 0 0;
+	background: black;
+	color: white;
+	opacity: 0.7;
+	transform: translateY(-100%);
+}
+
+.container button[data-type="close"]:hover {
+	color: #92a877;
+}
+
+
+@media screen and (orientation:portrait) {
+	.container {
+		height: 100%;
+		width: 20%;
+		left: 0;
+		top: 0;
+		/*transition: width 0.3s;*/
+	}
+
+	.container button[data-type="close"] {
+		right: 0;
+		transform: translateX(100%) translateY(0);
+		border-radius: 0 0 5px 0;
+	}
+}
