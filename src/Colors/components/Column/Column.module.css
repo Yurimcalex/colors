@@ -1,4 +1,4 @@
-.container {
+.column {
 	height: 100%;
 	display: flex;
 	flex-direction: column;
@@ -6,13 +6,13 @@
 	align-items: center;
 }
 
-.container h2 {
+.column_hash {
 	padding: 10px;
 	border-radius: 10px;
 	transition: background 0.3s;
 }
 
-.container h2:hover {
+.column_hash:hover {
 	background: rgba(0, 0, 0, 0.1);
 	cursor: pointer;
 }
