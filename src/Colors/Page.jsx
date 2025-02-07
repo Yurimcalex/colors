@@ -50,7 +50,7 @@ export default function Page() {
 			<Header>
 				<Logo />
 				{tooltipDisplayed 
-					? <Tooltip tooltipData={settingTooltips} gap={2}>{AppSettings}</Tooltip>
+					? <Tooltip tooltipData={settingTooltips} gap={5}>{AppSettings}</Tooltip>
 				  : <>{AppSettings}</>}
 			</Header>
 
