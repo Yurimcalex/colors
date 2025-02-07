@@ -1,13 +1,14 @@
 import React from 'react';
 import Button from '../Button/Button.jsx';
+import styles from './Joystick.module.css';
 
 
 export default function Joystick({ onSaveColors, onGenerataColors, Effect }) {
 
 	if (Effect) return (
-		<div>
+		<div className={styles.joystick}>
 			<Effect>
-				<div>
+				<div className={`${styles.joystick_slot} ${styles.joystick_leftbtn}`}>
 					<Button 
 						icon="fa-solid fa-paint-roller"
 						onClick={onGenerataColors}
@@ -16,7 +17,7 @@ export default function Joystick({ onSaveColors, onGenerataColors, Effect }) {
 			</Effect>
 			
 			<Effect>
-				<div>
+				<div className={`${styles.joystick_slot} ${styles.joystick_rightbtn}`}>
 					<Button 
 						icon="fa-solid fa-square-plus"
 						onClick={onSaveColors}
@@ -27,14 +28,14 @@ export default function Joystick({ onSaveColors, onGenerataColors, Effect }) {
 	);
 
 	return (
-		<div>			
-			<div>
+		<div className={styles.joystick}>			
+			<div className={styles.joystick_slot}>
 				<Button 
 					icon="fa-solid fa-paint-roller"
 					onClick={onGenerataColors}
 				/>
 			</div>	
-			<div>
+			<div className={styles.joystick_slot}>
 				<Button 
 					icon="fa-solid fa-square-plus"
 					onClick={onSaveColors}

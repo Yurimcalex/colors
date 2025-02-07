@@ -1,0 +1,33 @@
+.joystick {
+	display: flex;
+}
+
+.joystick_slot {
+	margin: 1px;
+	background: rgba(0, 0, 0, 0.2);
+	overflow: hidden;
+	transition: background 0.3s;
+}
+
+.joystick_slot:hover {
+	background: rgba(0, 0, 0, 0.5);
+}
+
+.joystick_leftbtn {
+	border-radius: 50px 0px 0px 50px;
+}
+
+.joystick_rightbtn {
+	border-radius: 0px 50px 50px 0px;
+}
+
+.joystick button {
+	width: 50px;
+	height: 100px;
+}
+
+.joystick button:hover {
+	background: transparent;
+	color: lightgray;
+	transition: color 0.3s;
+}
