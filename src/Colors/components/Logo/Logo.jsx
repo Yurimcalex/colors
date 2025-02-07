@@ -3,14 +3,14 @@ import styles from './Logo.module.css';
 
 export default function Logo() {
 	return (
-		<div className={styles.container}>
-			<span className={styles.red}>C</span>
-			<span className={styles.orange}>o</span>
-			<span className={styles.yellow}>l</span>
-			<span className={styles.green}>o</span>
-			<span className={styles.blue}>u</span>
-			<span className={styles.purple}>r</span>
-			<span className={styles.violet}>s</span>
+		<div className={styles.logo}>
+			<span className={styles.logo_letter1}>C</span>
+			<span className={styles.logo_letter2}>o</span>
+			<span className={styles.logo_letter3}>l</span>
+			<span className={styles.logo_letter4}>o</span>
+			<span className={styles.logo_letter5}>u</span>
+			<span className={styles.logo_letter6}>r</span>
+			<span className={styles.logo_letter7}>s</span>
 		</div>
 	);
 }

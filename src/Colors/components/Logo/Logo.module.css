@@ -1,4 +1,4 @@
-.container {
+.logo {
 	padding: 3px 10px;
 	border: 3px solid rgba(0, 0, 0, .1);
 	border-radius: 7px;
@@ -9,30 +9,36 @@
 	background: #1a253b;
 }
 
-.red {
+.logo_letter1 {
 	color: red;
 }
 
-.orange {
+.logo_letter2 {
 	color: orange;
 }
 
-.yellow {
+.logo_letter3 {
 	color: yellow
 }
 
-.green {
+.logo_letter4 {
 	color: green;
 }
 
-.blue {
+.logo_letter5 {
 	color: blue;
 }
 
-.purple {
+.logo_letter6 {
 	color: purple;
 }
 
-.violet {
+.logo_letter7 {
 	color: violet;
+}
+
+@media screen and (orientation:portrait) {
+	.logo {
+		display: none;
+	}
 }

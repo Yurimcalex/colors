@@ -49,8 +49,4 @@
 	.header_content button {
 		margin: 10px 0;
 	}
-
-	.header_content > div:first-child {
-		display: none;
-	}
 }
