@@ -3,9 +3,9 @@ import styles from './Header.module.css';
 
 export default function Header({ children }) {
 	return (
-		<div className={styles.container}>
-			<div className={styles.background}></div>
-			<div className={styles.content}>
+		<div className={styles.header}>
+			<div className={styles.header_background}></div>
+			<div className={styles.header_content}>
 				{children}
 			</div>
 		</div>
