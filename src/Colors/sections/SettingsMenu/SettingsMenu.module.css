@@ -1,0 +1,6 @@
+@media screen and (orientation:portrait) {
+	.menu {
+		display: flex;
+		flex-direction: column;
+	}
+}

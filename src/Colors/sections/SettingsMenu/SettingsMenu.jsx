@@ -11,7 +11,7 @@ export default function SettingsMenu({
  	onGenerataColors }) {
 	
 	return (
-		<div>
+		<div className={styles.menu}>
 			<Button 
 				icon="fa-solid fa-paint-roller"
 				dataType="get-new-colors"
