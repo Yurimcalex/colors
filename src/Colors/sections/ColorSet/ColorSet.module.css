@@ -1,6 +1,4 @@
 .container {
-	position: relative;
-	width: 200px;
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -10,8 +8,6 @@
 	border: 5px solid rgba(0, 0, 0, .1);
 	transition: transform 0.3s;
 	color: white;
-
-	margin-right: 20px;
 }
 
 .container:hover {
@@ -20,10 +16,13 @@
 
 .container button {
 	position: absolute;
+	padding: 3px 4px 2px 4px;
+	border-radius: 7px;
+	background: rgba(0, 0, 0, .3);
 }
 
 .container button:hover {
-	background: transparent;
+	background: rgba(0, 0, 0, .3);
 	color: lightgray;
 }
 
@@ -34,9 +33,7 @@
 
 @media screen and (orientation:portrait) {
 	.container {
-		/*width: initial;*/
-		width: 70px;
-		margin-right: 0;
+		width: 100%;
 		margin-top: 20px;
 	}
 }
