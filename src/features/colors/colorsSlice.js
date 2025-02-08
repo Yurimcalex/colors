@@ -65,6 +65,27 @@ export const colorsSlice = createSlice({
 			}
 		},
 
+		updateColors: {
+			reducer(state, action) {
+				const { color1, color2 } = action.payload;
+				const ind1 = state.current.colors.indexOf(color1);
+				const ind2 = state.current.colors.indexOf(color2);
+				const lock1 = state.current.locks[ind1];
+				const lock2 = state.current.locks[ind2];
+				state.current.colors[ind1] = color2;
+				state.current.colors[ind2] = color1;
+				state.current.locks[ind1] = lock2;
+				state.current.locks[ind2] = lock1;
+
+				Storage.updateColorsHash(state.current.colors);
+			},
+			prepare(color1, color2) {
+				return {
+					payload: { color1, color2 }
+				}
+			}
+		},
+
 		removeColors: {
 			reducer(state, action) {
 				const colors = action.payload;
@@ -103,7 +124,8 @@ export const colorsSlice = createSlice({
 	}
 });
 
-export const { generate, toggleLock, pickColors, removeColors, saveCurrentColors, removeAllSavedColors } = colorsSlice.actions;
+export const { generate, toggleLock, pickColors,
+	updateColors, removeColors, saveCurrentColors, removeAllSavedColors } = colorsSlice.actions;
 
 export default colorsSlice.reducer;
 
