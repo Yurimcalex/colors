@@ -20,18 +20,6 @@
 	align-items: center;
 }
 
-.header_content button {
-	transition: color 0.1s;
-	margin-left: 5px;
-	color: gray;
-}
-
-.header_content button:hover {
-	background: transparent;
-	color: lightgray;
-}
-
-
 
 @media screen and (orientation:portrait) {
 	.header {
@@ -44,9 +32,5 @@
 
 	.header_content {
 		padding: 0;
-	}
-
-	.header_content button {
-		margin: 10px 0;
 	}
 }
