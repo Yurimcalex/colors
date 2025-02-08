@@ -7,7 +7,7 @@ export default function Column({ color, lock, onColorLock, onColorCopy }) {
 	const luminance = chroma(color).luminance();
 
 	return (
-		<div className={styles.column} style={{ color: luminance > 0.5 ? 'black' : 'white' }}>
+		<div className={styles.column} style={{ color: luminance > 0.5 ? 'black' : 'white' }} data-color={color}>
 			<h2 className={styles.column_hash} onClick={onColorCopy} data-type="copy-to-clipboard">{color}</h2>
 			
 			<Button 
