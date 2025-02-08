@@ -1,9 +1,9 @@
 import React from 'react';
 import styles from './Button.module.css';
 
-export default function Button({ icon, onClick, dataType }) {
+export default function Button({ icon, onClick, dataType, cls }) {
 	return (
-		<button className={styles.button} onClick={onClick} data-type={dataType}>
+		<button className={`${styles.button} ${cls || ''}`} onClick={onClick} data-type={dataType}>
 			<i className={icon}></i>
 		</button>
 	);
