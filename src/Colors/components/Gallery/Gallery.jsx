@@ -40,11 +40,11 @@ export default function Gallery({ children }) {
 	}
 
 	return (
-		<div className={styles.container}>
-			<div className={styles.background}></div>
+		<div className={styles.gallery}>
+			<div className={styles.gallery_background}></div>
 			
-			<div className={styles.wrapper}>
-				<div className={styles.content} ref={colorsCont} style={style}>
+			<div className={styles.gallery_wrapper}>
+				<div className={styles.gallery_content} ref={colorsCont} style={style}>
 					{children}
 				</div>
 			</div>
