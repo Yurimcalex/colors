@@ -9,7 +9,6 @@ Colours app using React and Redux technologies.
 ## Next features
 
 - [] Show modal when deleting all saved color sets to confirm the removal.
-- [] Create a component that plays as a wrapper and makes its target element draggable.
 
 ### Refactoring
 
@@ -18,7 +17,6 @@ Colours app using React and Redux technologies.
 
 ### Fix
 
-- [] Hide controller panel on small screens
 - [] Disable tooltip functionality on small screens
 - [] Change up/down arrow icon to left/right ones on small screens
 - [] When adding/removing a color set - automatically scroll the slider
