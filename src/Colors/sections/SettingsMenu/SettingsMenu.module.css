@@ -1,6 +1,25 @@
+.menu button {
+	transition: color 0.1s;
+	margin-left: 5px;
+	color: gray;
+}
+
+.menu button:hover {
+	background: transparent;
+	color: lightgray;
+}
+
+.menu .menu_btn2  {
+	width: 47px;
+}
+
 @media screen and (orientation:portrait) {
 	.menu {
 		display: flex;
 		flex-direction: column;
+	}
+
+	.menu button {
+		margin: 10px 0;
 	}
 }

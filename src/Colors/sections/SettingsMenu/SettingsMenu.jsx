@@ -18,11 +18,18 @@ export default function SettingsMenu({
 				onClick={onGenerataColors}
 			/>
 
-			<Button 
-				icon={`fa-solid ${showTooltip ? 'fa-eye' : 'fa-eye-slash'}`}
-				dataType="toogle-tooltip"
-				onClick={onToggleTooltip}
-			/>
+			{showTooltip ? (<Button 
+												icon="fa-solid  fa-eye"
+												dataType="toogle-tooltip"
+												onClick={onToggleTooltip}
+										  />)
+
+									 : (<Button
+									 			cls={styles.menu_btn2}
+				                icon="fa-solid fa-eye-slash"
+			                	dataType="toogle-tooltip"
+				                onClick={onToggleTooltip}
+			                />)}
 
 			<Button 
 				icon="fa-solid fa-folder-minus"
