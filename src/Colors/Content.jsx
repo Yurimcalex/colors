@@ -12,7 +12,7 @@ export default function Content() {
 	useEffect(() => {
 	  window.addEventListener('keydown', handleKeyDown);
 	  return () => window.removeEventListener('keydown', handleKeyDown);
-	}, [locks, colors]);
+	}, []);
 
 	const handleKeyDown = (e) => {
 		if (e.code.toLowerCase() === 'space') {
