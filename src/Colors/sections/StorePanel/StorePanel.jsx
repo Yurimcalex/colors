@@ -4,7 +4,7 @@ import styles from './StorePanel.module.css';
 
 export default function StorePanel({ children, onToggleVisibility }) {
 	return (
-		<div className={styles.container}>
+		<div className={styles.store_panel}>
 			{children}
 
 			<Button 
