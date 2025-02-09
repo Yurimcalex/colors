@@ -30,15 +30,16 @@ export default function Content() {
 	}, [selectedColor, hoveredElm]);
 
 	const handleMouseDown = (e) => {
-		const target = e.target.closest('[data-color]');
-		if (target) setSelectedColor(target.dataset.color);
+		if (e.target.dataset && e.target.dataset.color)
+			setSelectedColor(e.target.dataset.color);
 	}
 
 	const handleMouseUp = (e) => {
-		if (hoveredElm) {
+		if (hoveredElm && selectedColor) {
 			const swapColor = hoveredElm.dataset.color;
 			if (selectedColor !== swapColor) {
 				dispatch(updateColors(selectedColor, swapColor));
+				setSelectedColor('');
 			}
 		}
 	};
