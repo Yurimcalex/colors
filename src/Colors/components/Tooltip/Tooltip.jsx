@@ -3,14 +3,14 @@ import styles from './Tooltip.module.css';
 import useHover from '../../hooks/useHover.jsx';
 
 
-export default function Tooltip({ children, tooltipData, gap }) {
+export default function Tooltip({ children, gap, tooltipDisplayed }) {
 	const [anchorElem, setAnchorElem] = useHover('[data-type]', true);
 
 	return (
 		<div>
 			{children}
-			
-			{anchorElem && 
+
+			{anchorElem && tooltipDisplayed &&
 				<Bar 
 					text={anchorElem.dataset.type.split('-').join(' ')}
 					anchorElem={anchorElem}
