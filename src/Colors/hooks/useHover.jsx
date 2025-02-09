@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
 
-export default function useHover(attr) {
+export default function useHover(attr, everyUpdate) {
 	const [elem, setElement] = useState(null);
 
 	useEffect(() => {
@@ -11,7 +11,7 @@ export default function useHover(attr) {
 			window.removeEventListener('mouseover', over);
 			window.removeEventListener('mouseout', out);
 		};
-	}, []);
+	}, everyUpdate ? [elem] : []);
 
 
 	const over = (e) => {
