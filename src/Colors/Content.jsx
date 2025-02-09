@@ -43,6 +43,7 @@ export default function Content() {
 			const dragEndColor = currentElem.dataset.color;
 			if (dragStartColor !== dragEndColor) {
 				dispatch(updateColors(dragStartColor, dragEndColor));
+				currentElem = null;
 			}
 			
 		}
