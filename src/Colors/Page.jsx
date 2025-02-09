@@ -24,18 +24,6 @@ export default function Page() {
 
 	const luminance = chroma(colors[2]).luminance();
 
-	const settingTooltips = [
-		'save-colors',
-		'remove-all-saved-colors',
-		'toggle-saved-colors-panel',
-		'toogle-tooltip',
-		'get-new-colors'
-	];
-
-	const colorTooltips = [
-		'copy-to-clipboard',
-		'lock/unlock-color'
-	];
 
 	const AppSettings = <Settings 
 		storeDisplayed={storeDisplayed}
@@ -44,27 +32,22 @@ export default function Page() {
 		toggleTooltipDisplay={toggleTooltipDisplay}
 	/>
 
-
 	return (
-		<div>
+		<Tooltip gap={5} tooltipDisplayed={tooltipDisplayed}>
 			<Header>
 				<Logo />
-				{tooltipDisplayed 
-					? <Tooltip tooltipData={settingTooltips} gap={5}>{AppSettings}</Tooltip>
-				  : <>{AppSettings}</>}
+				<Settings 
+					storeDisplayed={storeDisplayed}
+					tooltipDisplayed={tooltipDisplayed}
+					toggleStoreDisplay={toggleStoreDisplay}
+					toggleTooltipDisplay={toggleTooltipDisplay}
+				/>
 			</Header>
+		
 
-
-			{tooltipDisplayed
-				? (<Tooltip tooltipData={colorTooltips} gap={3}>
-					 	<MainContent>
-							<Content / >
-						</MainContent>
-					</Tooltip>) 
-					
-				: (<MainContent>
-						<Content / >
-					</MainContent>)}
+			<MainContent>
+				<Content / >
+			</MainContent>
 
 
 			<JoystickPanel luminance={luminance}>
@@ -79,6 +62,6 @@ export default function Page() {
 					</Gallery>
 				</StorePanel>
 			)}
-		</div>
+		</Tooltip>
 	);
 }
