@@ -1,40 +1,18 @@
 import React, { useState, useRef, useEffect, Fragment } from 'react';
 import styles from './Tooltip.module.css';
+import useHover from '../../hooks/useHover.jsx';
+
 
 export default function Tooltip({ children, tooltipData, gap }) {
-	const [anchorElem, setAnchorElem] = useState(null);
-
-	const handleMouseOver = (e) => {
-		const tooltipText = tooltipData.find(text => text === e.target.dataset.type);
-		if (tooltipText) {
-			setAnchorElem(e.target);
-		} else {
-			if (!e.target.closest("[data-type]")) {
-				setAnchorElem(null);
-			}
-		}
-	};
-
-	const handleMouseLeave = (e) => {
-		if (anchorElem) setAnchorElem(null);
-	}
-	
-
-	let tooltipText;
-	if (anchorElem) {
-		tooltipText = anchorElem.dataset.type.split('-').join(' ')
-	}
+	const [anchorElem, setAnchorElem] = useHover('[data-type]', true);
 
 	return (
-		<div
-			onMouseOver={handleMouseOver}
-			onMouseLeave={handleMouseLeave}
-		>
+		<div>
 			{children}
-
+			
 			{anchorElem && 
 				<Bar 
-					text={tooltipText}
+					text={anchorElem.dataset.type.split('-').join(' ')}
 					anchorElem={anchorElem}
 					gap={gap}
 				/>}
@@ -61,15 +39,15 @@ function Bar({ text, anchorElem, gap }) {
 
 	return (
 		<div
-			className={styles.container}
+			className={styles.tooltip}
 			ref={bar}
 			style={{
 				top: `${top}px`,
 				left: `${left}px`
 			}}
 		>	
-			<div className={styles.pointer} style={{left: `${pLeft}px`}}></div>
-			<div className={styles.tooltip}>{text}</div>
+			<div className={styles.tooltip_pointer} style={{left: `${pLeft}px`}}></div>
+			<div className={styles.tooltip_body}>{text}</div>
 		</div>
 	);
 }
