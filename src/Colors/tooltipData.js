@@ -44,7 +44,7 @@ export const tooltipData = {
 	'column-btn-copy-hash': {
 		text: 'Copy color to clipboard',
 		pointer: 'up',
-		gap: 10
+		gap: 7
 	},
 
 	'column-btn-lock-color': {
@@ -57,5 +57,11 @@ export const tooltipData = {
 		text: 'Color unlocked',
 		pointer: 'up',
 		gap: 10
-	}
+	},
+
+	'joystick-btn-generate-colors': {
+		text: 'Generate colors',
+		pointer: 'right',
+		gap: 15
+	},
 };
