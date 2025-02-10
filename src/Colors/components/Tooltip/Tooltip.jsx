@@ -1,20 +1,26 @@
 import React, { useState, useRef, useEffect, Fragment } from 'react';
 import styles from './Tooltip.module.css';
 import useHover from '../../hooks/useHover.jsx';
+import { tooltipData } from '../../tooltipData.js';
 
 
 export default function Tooltip({ children, gap, tooltipDisplayed }) {
-	const [anchorElem, setAnchorElem] = useHover('[data-type]', true);
+	const [anchorElem] = useHover('[data-tooltip]', tooltipDisplayed);
+
+	let data;
+	if (anchorElem && anchorElem.dataset.tooltip) {
+		data = tooltipData[anchorElem.dataset.tooltip];
+	}
 
 	return (
 		<div>
 			{children}
 
-			{anchorElem && tooltipDisplayed &&
+			{anchorElem && tooltipDisplayed && 
 				<Bar 
-					text={anchorElem.dataset.type.split('-').join(' ')}
+					text={data.text}
 					anchorElem={anchorElem}
-					gap={gap}
+					gap={data.gap || gap}
 				/>}
 		</div>
 	);
