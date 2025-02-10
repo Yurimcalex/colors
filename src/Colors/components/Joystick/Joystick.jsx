@@ -21,6 +21,7 @@ export default function Joystick({ onSaveColors, onGenerataColors, Effect }) {
 					<Button 
 						icon="fa-solid fa-square-plus"
 						onClick={onSaveColors}
+						dataTooltip="joystick-btn-save-colors"
 					/>
 				</div>
 			</Effect>

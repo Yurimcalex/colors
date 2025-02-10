@@ -30,6 +30,7 @@ function Bar({ anchorElem, tooltipData }) {
 	let pointerClass;
 	if (pointer === 'up') pointerClass = styles.tooltip_pointer_up;
 	else if (pointer === 'right') pointerClass = styles.tooltip_pointer_right;
+	else if (pointer === 'left') pointerClass = styles.tooltip_pointer_left;
 
 	return (
 		<div

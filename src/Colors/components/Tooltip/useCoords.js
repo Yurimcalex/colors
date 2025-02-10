@@ -10,7 +10,7 @@ export default function useCoords(anchor, tooltipData) {
 		let nextCoords;
 		if (pointer === 'up') nextCoords = getBottom(anchor, bar.current, gap);
 		else if (pointer === 'right') nextCoords = getLeft(anchor, bar.current, gap);
-
+		else if (pointer === 'left') nextCoords = getRight(anchor, bar.current, gap);
 		setCoords(nextCoords);
 	}, [anchor]);
 
@@ -41,6 +41,14 @@ function getBottom(anchor, tooltip, gap) {
 function getLeft(anchor, tooltip, gap) {
 	const anchorCoords = anchor.getBoundingClientRect();
 	let left = anchorCoords.left - tooltip.offsetWidth - gap;
+	let top = anchorCoords.top + anchorCoords.height / 2  - tooltip.offsetHeight / 2;
+	return { left, top };
+}
+
+
+function getRight(anchor, tooltip, gap) {
+	const anchorCoords = anchor.getBoundingClientRect();
+	let left = anchorCoords.right + gap;
 	let top = anchorCoords.top + anchorCoords.height / 2  - tooltip.offsetHeight / 2;
 	return { left, top };
 }

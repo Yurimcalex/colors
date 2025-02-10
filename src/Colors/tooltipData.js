@@ -64,4 +64,10 @@ export const tooltipData = {
 		pointer: 'right',
 		gap: 15
 	},
+
+	'joystick-btn-save-colors': {
+		text: 'Save current colors',
+		pointer: 'left',
+		gap: 15
+	}
 };
