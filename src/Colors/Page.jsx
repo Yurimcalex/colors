@@ -24,16 +24,11 @@ export default function Page() {
 
 	const luminance = chroma(colors[2]).luminance();
 
+	const MemoTooltip = React.memo(Tooltip);
 
-	const AppSettings = <Settings 
-		storeDisplayed={storeDisplayed}
-		tooltipDisplayed={tooltipDisplayed}
-		toggleStoreDisplay={toggleStoreDisplay}
-		toggleTooltipDisplay={toggleTooltipDisplay}
-	/>
 
 	return (
-		<Tooltip gap={5} tooltipDisplayed={tooltipDisplayed}>
+		<MemoTooltip gap={5} tooltipDisplayed={tooltipDisplayed}>
 			<Header>
 				<Logo />
 				<Settings 
@@ -62,6 +57,6 @@ export default function Page() {
 					</Gallery>
 				</StorePanel>
 			)}
-		</Tooltip>
+		</MemoTooltip>
 	);
 }
