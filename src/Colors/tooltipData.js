@@ -56,14 +56,14 @@ export const tooltipData = {
 	},
 
 	'column-btn-lock-color': {
-		text: 'Lock: do not generate color',
+		text: 'Color locked',
 		place: 'bottom',
 		pointer: 'up',
 		gap: 3
 	},
 
 	'column-btn-unlock-color': {
-		text: 'Unlock: generate color',
+		text: 'Color unlocked',
 		place: 'bottom',
 		pointer: 'up',
 		gap: 3
