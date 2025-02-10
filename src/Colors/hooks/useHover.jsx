@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
 
-export default function useHover(attr, dependency) {
+export default function useHover(attr, dependency, fn) {
 	const [elem, setElement] = useState(null);
 
 	useEffect(() => {
@@ -18,12 +18,14 @@ export default function useHover(attr, dependency) {
 		let target = e.target;
 		if (target.hasAttribute(attr)) {
 			setElement(target);
+			if (fn) fn(e);
 			return;
 		}
 		target = target.closest(attr);
 		if (target) {
 			if (target === elem) return;
 			setElement(target);
+			if (fn) fn(e);
 		}
 	};
 
