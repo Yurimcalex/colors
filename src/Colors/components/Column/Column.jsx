@@ -8,12 +8,18 @@ export default function Column({ color, lock, onColorLock, onColorCopy }) {
 
 	return (
 		<div className={styles.column} style={{ color: luminance > 0.5 ? 'black' : 'white' }} data-color={color}>
-			<h2 className={styles.column_hash} onClick={onColorCopy} data-type="copy-to-clipboard">{color}</h2>
+			<h2 
+				className={styles.column_hash}
+				onClick={onColorCopy}
+				data-tooltip="column-btn-copy-hash"
+			>
+				{color}
+			</h2>
 			
 			<Button 
 				icon={`fa-solid ${lock ? 'fa-lock' : 'fa-lock-open'}`}
 				onClick={onColorLock}
-				dataType="lock/unlock-color"
+				dataTooltip={lock ? "column-btn-lock-color" : "column-btn-unlock-color"}
 			/>
 		</div>
 	);
