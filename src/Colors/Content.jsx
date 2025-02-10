@@ -10,8 +10,9 @@ export default function Content() {
 	const { colors, locks } = useSelector(selectCurrentColors);
 	const dispatch = useDispatch();
 
-	const [hoveredElm, setHoveredElm] = useHover('[data-color]');
 	const [selectedColor, setSelectedColor] = useState('');
+	const [hoveredElm] = useHover('[data-color]', selectedColor);
+	
 
 
 	useEffect(() => {
@@ -35,6 +36,7 @@ export default function Content() {
 	}
 
 	const handleMouseUp = (e) => {
+		if (!(e.target.dataset && e.target.dataset.color)) return;
 		if (hoveredElm && selectedColor) {
 			const swapColor = hoveredElm.dataset.color;
 			if (selectedColor !== swapColor) {
