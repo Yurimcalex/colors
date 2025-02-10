@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
 
-export default function useHover(attr, everyUpdate) {
+export default function useHover(attr, dependency) {
 	const [elem, setElement] = useState(null);
 
 	useEffect(() => {
@@ -11,14 +11,20 @@ export default function useHover(attr, everyUpdate) {
 			window.removeEventListener('mouseover', over);
 			window.removeEventListener('mouseout', out);
 		};
-	}, everyUpdate ? [elem] : []);
+	}, [elem, dependency]);
 
 
 	const over = (e) => {
-		if (elem) return;
-		let target = event.target.closest(attr);
-		if (!target) return;
-		setElement(target);
+		let target = e.target;
+		if (target.hasAttribute(attr)) {
+			setElement(target);
+			return;
+		}
+		target = target.closest(attr);
+		if (target) {
+			if (target === elem) return;
+			setElement(target);
+		}
 	};
 
 	const out = (e) => {
