@@ -12,6 +12,7 @@ import Controller from './Controller.jsx';
 import StorePanel from './sections/StorePanel/StorePanel.jsx';
 import Gallery from './components/Gallery/Gallery.jsx';
 import StoredColors from './StoredColors.jsx';
+import useColor from './hooks/useColor.js';
 
 
 export default function Page() {
@@ -27,6 +28,9 @@ export default function Page() {
 	const MemoTooltip = React.memo(Tooltip);
 
 
+	const [color] = useColor();
+
+
 	return (
 		<MemoTooltip gap={5} tooltipDisplayed={tooltipDisplayed}>
 			<Header>
@@ -40,8 +44,8 @@ export default function Page() {
 			</Header>
 		
 
-			<MainContent>
-				<Content / >
+			<MainContent color={color}>
+				<Content color={color}/>
 			</MainContent>
 
 
