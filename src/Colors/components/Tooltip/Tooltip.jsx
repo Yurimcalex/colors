@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect, Fragment } from 'react';
 import styles from './Tooltip.module.css';
 import useHover from '../../hooks/useHover.jsx';
 import { tooltipData } from '../../tooltipData.js';
+import useCoords from './useCoords.js';
 
 
 export default function Tooltip({ children, gap, tooltipDisplayed }) {
@@ -16,75 +17,31 @@ export default function Tooltip({ children, gap, tooltipDisplayed }) {
 		<div>
 			{children}
 
-			{anchorElem && tooltipDisplayed && 
-				<Bar 
-					text={data.text}
-					anchorElem={anchorElem}
-					gap={data.gap || gap}
-				/>}
+			{anchorElem && tooltipDisplayed && <Bar anchorElem={anchorElem} tooltipData={data}/>}
 		</div>
 	);
 }
 
 
-function Bar({ text, anchorElem, gap }) {
-	const [coords, setCoords] = useState(null);
-	const bar = useRef(null);
-	
-	useEffect(() => {
-		const coords = getTooltipCoords(anchorElem, bar.current, gap);
-		setCoords(coords);
-	}, [anchorElem]);
+function Bar({ anchorElem, tooltipData }) {
+	const { text, pointer } = tooltipData;
+	const [coords, ref] = useCoords(anchorElem, tooltipData);
 
-	let top = -100, left = -100, pLeft = 50;
-	if (coords) {
-		top = coords.y;
-		left = coords.x;
-		pLeft = coords.pLeft;
-	}
+	let pointerClass;
+	if (pointer === 'up') pointerClass = styles.tooltip_pointer_up;
+	else if (pointer === 'right') pointerClass = styles.tooltip_pointer_right;
 
 	return (
 		<div
 			className={styles.tooltip}
-			ref={bar}
+			ref={ref}
 			style={{
-				top: `${top}px`,
-				left: `${left}px`
+				top: `${coords.top}px`,
+				left: `${coords.left}px`
 			}}
 		>	
-			<div className={styles.tooltip_pointer} style={{left: `${pLeft}px`}}></div>
+			<div className={pointerClass}></div>
 			<div className={styles.tooltip_body}>{text}</div>
 		</div>
 	);
-}
-
-
-function getTooltipCoords(anchorElem, tooltipElem, gap) {
-	const anchorCoords = anchorElem.getBoundingClientRect();
-	const docWidth = document.documentElement.clientWidth;
-
-	let pointer = tooltipElem.offsetWidth / 2;
-
-	let left = anchorCoords.left + ((anchorElem.offsetWidth / 2) - (tooltipElem.offsetWidth / 2));
-	if (left < 0) {
-		left = 0;
-		pointer = anchorElem.offsetWidth / 2;
-	}
-	if (left + tooltipElem.offsetWidth > docWidth) {
-		left = docWidth - tooltipElem.offsetWidth;
-		pointer = tooltipElem.offsetWidth - anchorElem.offsetWidth / 2;
-	}
-
-	// let top = anchorCoords.top - (anchorElem.offsetHeight / 2) - gap;
-	// if (top < 0) {
-	// 	top = anchorCoords.bottom + gap;
-	// }
-
-	let top = anchorCoords.bottom + gap;
-
-	return {
-		x: left,
-		y: top,
-		pLeft: pointer - 2.5 // half width of pointer
-	}
 }
