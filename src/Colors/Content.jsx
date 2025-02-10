@@ -6,46 +6,21 @@ import Column from './components/Column/Column.jsx';
 import useHover from './hooks/useHover.jsx';
 
 
-export default function Content() {
+export default function Content({ color }) {
 	const { colors, locks } = useSelector(selectCurrentColors);
 	const dispatch = useDispatch();
-
-	const [selectedColor, setSelectedColor] = useState('');
-	const [hoveredElm] = useHover('[data-color]', selectedColor);
-	
-
 
 	useEffect(() => {
 	  window.addEventListener('keydown', handleKeyDown);
 	  return () => window.removeEventListener('keydown', handleKeyDown);
 	}, []);
+	
+	useHover('[data-color]', color, handleColorMove);
 
-
-	useEffect(() => {
-		window.addEventListener('mousedown', handleMouseDown);
-		window.addEventListener('mouseup', handleMouseUp);
-		return () => {
-			window.removeEventListener('mousedown', handleMouseDown);
-			window.removeEventListener('mouseup', handleMouseUp);
-		};
-	}, [selectedColor, hoveredElm]);
-
-	const handleMouseDown = (e) => {
-		if (e.target.dataset && e.target.dataset.color)
-			setSelectedColor(e.target.dataset.color);
+	
+	function handleColorMove(e) {
+		if (color) dispatch(updateColors(color, e.target.dataset.color));
 	}
-
-	const handleMouseUp = (e) => {
-		if (!(e.target.dataset && e.target.dataset.color)) return;
-		if (hoveredElm && selectedColor) {
-			const swapColor = hoveredElm.dataset.color;
-			if (selectedColor !== swapColor) {
-				dispatch(updateColors(selectedColor, swapColor));
-				setSelectedColor('');
-			}
-		}
-	};
-
 
 	const handleKeyDown = (e) => {
 		if (e.code.toLowerCase() === 'space') {
