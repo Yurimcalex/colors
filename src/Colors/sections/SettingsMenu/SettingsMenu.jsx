@@ -14,38 +14,32 @@ export default function SettingsMenu({
 		<div className={styles.menu}>
 			<Button 
 				icon="fa-solid fa-paint-roller"
-				dataType="get-new-colors"
+				dataTooltip="settings-btn-generate-colors"
 				onClick={onGenerataColors}
 			/>
 
-			{showTooltip ? (<Button 
-												icon="fa-solid  fa-eye"
-												dataType="toogle-tooltip"
-												onClick={onToggleTooltip}
-										  />)
-
-									 : (<Button
-									 			cls={styles.menu_btn2}
-				                icon="fa-solid fa-eye-slash"
-			                	dataType="toogle-tooltip"
-				                onClick={onToggleTooltip}
-			                />)}
+			<Button
+				icon={showTooltip ? "fa-solid  fa-eye" : "fa-solid fa-eye-slash"}
+				dataTooltip={showTooltip ? "settings-btn-hide-tooltips" : "settings-btn-show-tooltips"}
+				onClick={onToggleTooltip}
+				cls={showTooltip ? "" : styles.menu_btn2}
+			/>
 
 			<Button 
 				icon="fa-solid fa-folder-minus"
-				dataType="remove-all-saved-colors"
+				dataTooltip="settings-btn-clear-store"
 				onClick={onRemoveAllSaved}
 			/>
 
 			<Button 
-				icon={`fa-solid ${visibility ? 'fa-square-caret-down' : 'fa-square-caret-up'}`}
-				dataType="toggle-saved-colors-panel"
+				icon={visibility ? 'fa-solid fa-square-caret-down' : 'fa-solid fa-square-caret-up'}
+				dataTooltip={visibility ? "settings-btn-hide-store" : "settings-btn-open-store"}
 				onClick={onToggleVisibility}
 			/>
 
 			<Button 
 				icon="fa-solid fa-square-plus"
-				dataType="save-colors"
+				dataTooltip="settings-btn-save-colors"
 				onClick={() => {
 					if (!visibility) onToggleVisibility();
 					onSaveColors();
