@@ -15,11 +15,12 @@ export default function Content({ color }) {
 	  return () => window.removeEventListener('keydown', handleKeyDown);
 	}, []);
 	
-	useHover('[data-color]', color, handleColorMove);
+	useHover('data-color', handleColorMove);
 
 	
 	function handleColorMove(e) {
-		if (color) dispatch(updateColors(color, e.target.dataset.color));
+		if (color && e.target.dataset && e.target.dataset.color)
+			dispatch(updateColors(color, e.target.dataset.color));
 	}
 
 	const handleKeyDown = (e) => {

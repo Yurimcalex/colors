@@ -6,7 +6,7 @@ import useCoords from './useCoords.js';
 
 
 export default function Tooltip({ children, gap, tooltipDisplayed }) {
-	const [anchorElem] = useHover('[data-tooltip]', tooltipDisplayed);
+	const [anchorElem] = useHover('data-tooltip');
 
 	let data;
 	if (anchorElem && anchorElem.dataset.tooltip) {

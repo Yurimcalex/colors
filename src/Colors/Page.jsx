@@ -26,9 +26,10 @@ export default function Page() {
 	const luminance = chroma(colors[2]).luminance();
 	const [color] = useColor();
 
+	const MemoizedTooltip = React.memo(Tooltip);
 
 	return (
-		<Tooltip gap={5} tooltipDisplayed={tooltipDisplayed}>
+		<MemoizedTooltip gap={5} tooltipDisplayed={tooltipDisplayed}>
 			<Header>
 				<Logo />
 				<Settings 
@@ -57,6 +58,6 @@ export default function Page() {
 					</Gallery>
 				</StorePanel>
 			)}
-		</Tooltip>
+		</MemoizedTooltip>
 	);
 }
