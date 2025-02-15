@@ -1,8 +1,28 @@
 import React, { useState, useEffect } from 'react';
 
 
-export default function useHover(attr, dependency, fn) {
+export default function useHover(attr, fn) {
 	const [elem, setElement] = useState(null);
+
+	const over = (e) => {
+		if (elem) return;
+		const target = e.target.closest(`[${attr}]`);
+		if (!target) return;
+		setElement(target);
+		if (fn) fn(e);
+	};
+
+	const out = (e) => {
+		if (!elem) return;
+		let relatedTarget = e.relatedTarget;
+		while (relatedTarget) {
+			if (relatedTarget == elem) return;
+			relatedTarget = relatedTarget.parentNode;
+		}
+		setElement(null);
+	};
+
+	const dependencies = fn ? [] : [elem];
 
 	useEffect(() => {
 		window.addEventListener('mouseover', over);
@@ -11,33 +31,8 @@ export default function useHover(attr, dependency, fn) {
 			window.removeEventListener('mouseover', over);
 			window.removeEventListener('mouseout', out);
 		};
-	}, [elem, dependency]);
+	}, [...dependencies]);
 
-
-	const over = (e) => {
-		let target = e.target;
-		if (target.hasAttribute(attr)) {
-			setElement(target);
-			if (fn) fn(e);
-			return;
-		}
-		target = target.closest(attr);
-		if (target) {
-			if (target === elem) return;
-			setElement(target);
-			if (fn) fn(e);
-		}
-	};
-
-	const out = (e) => {
-		if (!elem) return;
-		let relatedTarget = event.relatedTarget;
-		while (relatedTarget) {
-		  if (relatedTarget == elem) return;
-		  relatedTarget = relatedTarget.parentNode;
-		}
-		setElement(null);
-	};
 
 	return [elem, setElement];
 }
