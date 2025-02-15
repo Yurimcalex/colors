@@ -8,7 +8,12 @@ export default function Gallery({ children }) {
 	const [isPortrait, setIsPortrait] = usePortraitOrientation();
 	const [pad, setPad] = useState(0);
 	const colorsCont = useRef(null);
-	const shiftPad = 200;
+
+	const COLOR_SET_W = 210;
+	const COLOR_SET_GAP = 15;
+	const CONTENT_PAD = 10;
+
+	const shiftPad = COLOR_SET_W + COLOR_SET_GAP;
 
 	useEffect(() => {
 		window.addEventListener('resize', handleResize);
@@ -20,25 +25,32 @@ export default function Gallery({ children }) {
 		setPad(0);
 	};
 
+
 	const handleForward = () => {
-		const cont = colorsCont.current;
-		if (!isPortrait && cont.scrollWidth - pad <= cont.parentNode.offsetWidth) return;
-		if (isPortrait && cont.scrollHeight - pad <= cont.parentNode.offsetHeight) return;
+		if (pad === 0) return;
 		setPad(pad + shiftPad);
 	};
 
 	const handleBack = () => {
-		const cont = colorsCont.current;
-		let newPad = pad - shiftPad;
-		if (newPad < 0) newPad = 0;
-		setPad(newPad);
+		const content = colorsCont.current;
+		const wrapper = content.parentNode;
+		const actualContentSize = content.children.length * (COLOR_SET_W + COLOR_SET_GAP) + CONTENT_PAD * 2;
+		const overflowSize = isPortrait 
+			? actualContentSize - wrapper.offsetHeight 
+			: actualContentSize - wrapper.offsetWidth;
+
+		const newPad = pad - shiftPad;
+		if (Math.abs(newPad) - COLOR_SET_W > overflowSize) return;
+		if (newPad <= actualContentSize) {
+			setPad(newPad);
+		}
 	}
 
 	const style = {};
 	if (isPortrait) {
-		style.marginTop = `${-pad}px`;
+		style.marginTop = `${pad}px`;
 	} else {
-		style.marginLeft = `${-pad}px`;
+		style.marginLeft = `${pad}px`;
 	}
 
 	return (
@@ -54,12 +66,12 @@ export default function Gallery({ children }) {
 			<Button
 			 icon={`fa-solid ${isPortrait ? 'fa-chevron-down' : 'fa-chevron-left'}`}
 			 dataType="prev"
-			 onClick={handleBack} />
+			 onClick={isPortrait ? handleForward : handleBack} />
 			
 			<Button 
 				icon={`fa-solid ${isPortrait ? 'fa-chevron-up' : 'fa-chevron-right'}`}
 				dataType="next" 
-				onClick={handleForward} />
+				onClick={isPortrait ? handleBack : handleForward} />
 		</div>
 	);
 };
