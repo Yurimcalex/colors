@@ -1,9 +1,11 @@
 import React, { useState, useRef, useEffect } from 'react';
 import Button from '../Button/Button.jsx';
 import styles from './Gallery.module.css';
+import usePortraitOrientation from '../../hooks/usePortraitOrientation.js';
+
 
 export default function Gallery({ children }) {
-	const [isPortrait, setIsPortrait] = useState(isPortraitOrientation());
+	const [isPortrait, setIsPortrait] = usePortraitOrientation();
 	const [pad, setPad] = useState(0);
 	const colorsCont = useRef(null);
 	const shiftPad = 200;
@@ -14,7 +16,7 @@ export default function Gallery({ children }) {
 	}, [isPortrait]);
 
 	const handleResize = () => {
-		setIsPortrait(isPortraitOrientation());
+		setIsPortrait();
 		setPad(0);
 	};
 
@@ -61,7 +63,3 @@ export default function Gallery({ children }) {
 		</div>
 	);
 };
-
-function isPortraitOrientation() {
-	return window.matchMedia("(orientation: portrait)").matches;
-}
