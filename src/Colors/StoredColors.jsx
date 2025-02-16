@@ -4,7 +4,7 @@ import { pickColors, removeColors, selectSavedColorsHashes } from '../features/c
 import ColorSet from './sections/ColorSet/ColorSet.jsx';
 
 
-export default function StoredColors() {
+export default function StoredColors({ padBack }) {
 	const dispatch = useDispatch();
 	const colorSets = useSelector(selectSavedColorsHashes);
 
@@ -14,7 +14,10 @@ export default function StoredColors() {
 				<ColorSet 
 					key={colors.join()}
 					colors={colors}
-					onRemove={(colors) => dispatch(removeColors(colors))}
+					onRemove={(colors) => {
+						dispatch(removeColors(colors));
+						padBack();
+					}}
 					onSelect={(colors) => dispatch(pickColors(colors))}
 				/>
 			))}

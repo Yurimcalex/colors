@@ -28,6 +28,11 @@ export default function Page() {
 
 	const MemoizedTooltip = React.memo(Tooltip);
 
+	const [savedPad, setSavedPad] = useState(0);
+	const padBack = () => {
+		if (savedPad < 0) setSavedPad(savedPad + 225);
+	};
+
 	return (
 		<MemoizedTooltip gap={5} tooltipDisplayed={tooltipDisplayed}>
 			<Header>
@@ -53,8 +58,8 @@ export default function Page() {
 			
 			{storeDisplayed && (
 				<StorePanel onToggleVisibility={toggleStoreDisplay}>
-					<Gallery>
-						<StoredColors />
+					<Gallery savedPad={savedPad} setSavedPad={setSavedPad}>
+						<StoredColors padBack={padBack}/>
 					</Gallery>
 				</StorePanel>
 			)}
