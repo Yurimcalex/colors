@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
-import { selectCurrentColors } from '../features/colors/colorsSlice.js';
+import { selectCurrentColors, selectSavedColorsHashes } from '../features/colors/colorsSlice.js';
 import Header from './sections/Header/Header.jsx';
 import Logo from './components/Logo/Logo.jsx';
 import Settings from './Settings.jsx';
@@ -17,6 +17,7 @@ import useColor from './hooks/useColor.js';
 
 export default function Page() {
 	const { colors, locks } = useSelector(selectCurrentColors);
+	const colorSets = useSelector(selectSavedColorsHashes);
 	const [storeDisplayed, setStoreDisplayed] = useState(false);
 	const [tooltipDisplayed, setTooltipDisplayed] = useState(true);
 
@@ -28,10 +29,20 @@ export default function Page() {
 
 	const MemoizedTooltip = React.memo(Tooltip);
 
+	// gallery feat
 	const [savedPad, setSavedPad] = useState(0);
+	const [gallerySize, setGallerySize] = useState(false);
 	const padBack = () => {
 		if (savedPad < 0) setSavedPad(savedPad + 225);
 	};
+	const padForward = () => {
+		const count = colorSets.length;
+		const visibleCount = Math.floor(gallerySize / 225);
+		if (count > gallerySize / 225) {
+			setSavedPad(-(count - visibleCount + 1) * 225);
+		}
+	};
+
 
 	return (
 		<MemoizedTooltip gap={5} tooltipDisplayed={tooltipDisplayed}>
@@ -42,6 +53,7 @@ export default function Page() {
 					tooltipDisplayed={tooltipDisplayed}
 					toggleStoreDisplay={toggleStoreDisplay}
 					toggleTooltipDisplay={toggleTooltipDisplay}
+					padForward={padForward}
 				/>
 			</Header>
 			
@@ -52,13 +64,13 @@ export default function Page() {
 
 
 			<JoystickPanel luminance={luminance}>
-				<Controller toggleVisibility={toggleStoreDisplay} visibility={storeDisplayed} />
+				<Controller toggleVisibility={toggleStoreDisplay} visibility={storeDisplayed} padForward={padForward}/>
 			</JoystickPanel>
 
 			
 			{storeDisplayed && (
 				<StorePanel onToggleVisibility={toggleStoreDisplay}>
-					<Gallery savedPad={savedPad} setSavedPad={setSavedPad}>
+					<Gallery savedPad={savedPad} setSavedPad={setSavedPad} setGallerySize={setGallerySize}>
 						<StoredColors padBack={padBack}/>
 					</Gallery>
 				</StorePanel>

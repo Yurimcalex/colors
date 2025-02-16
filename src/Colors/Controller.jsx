@@ -4,7 +4,7 @@ import { generate, saveCurrentColors, selectCurrentColors } from '../features/co
 import Joystick from './components/Joystick/Joystick.jsx';
 import PressingEffect from './components/PressingEffect/PressingEffect.jsx';
 
-export default function Controller({ toggleVisibility, visibility }) {
+export default function Controller({ toggleVisibility, visibility, padForward }) {
 	const { colors, locks } = useSelector(selectCurrentColors);
 	const dispatch = useDispatch();
 
@@ -14,6 +14,7 @@ export default function Controller({ toggleVisibility, visibility }) {
 			onSaveColors={() => {
 				dispatch(saveCurrentColors());
 				if (!visibility) toggleVisibility();
+				padForward();
 			}}
 			Effect={PressingEffect}
 		/>
