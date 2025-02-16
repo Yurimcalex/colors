@@ -4,7 +4,7 @@ import styles from './Gallery.module.css';
 import usePortraitOrientation from '../../hooks/usePortraitOrientation.js';
 
 
-export default function Gallery({ children, savedPad, setSavedPad }) {
+export default function Gallery({ children, savedPad, setSavedPad, setGallerySize }) {
 	const [isPortrait, setIsPortrait] = usePortraitOrientation();
 	const [pad, setPad] = useState(savedPad);
 	const colorsCont = useRef(null);
@@ -22,10 +22,18 @@ export default function Gallery({ children, savedPad, setSavedPad }) {
 
 
 	useEffect(() => {
-		setTimeout(() => {
+		let timer = setTimeout(() => {
 			setSavedPad(pad);
 		}, 300);
+		return () => clearTimeout(timer);
 	}, [pad]);
+
+
+	useEffect(() => {
+		const wrapper = colorsCont.current.parentNode;
+		const size = isPortrait ? wrapper.offsetHeight : wrapper.offsetWidth;
+		setGallerySize(size);
+	}, []);
 
 
 	const handleResize = () => {
