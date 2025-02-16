@@ -4,21 +4,29 @@ import styles from './Gallery.module.css';
 import usePortraitOrientation from '../../hooks/usePortraitOrientation.js';
 
 
-export default function Gallery({ children }) {
+export default function Gallery({ children, savedPad, setSavedPad }) {
 	const [isPortrait, setIsPortrait] = usePortraitOrientation();
-	const [pad, setPad] = useState(0);
+	const [pad, setPad] = useState(savedPad);
 	const colorsCont = useRef(null);
 
 	const COLOR_SET_W = 210;
 	const COLOR_SET_GAP = 15;
 	const CONTENT_PAD = 10;
-
 	const shiftPad = COLOR_SET_W + COLOR_SET_GAP;
+
 
 	useEffect(() => {
 		window.addEventListener('resize', handleResize);
 		return () => window.removeEventListener('resize', handleResize);
 	}, [isPortrait]);
+
+
+	useEffect(() => {
+		setTimeout(() => {
+			setSavedPad(pad);
+		}, 300);
+	}, [pad]);
+
 
 	const handleResize = () => {
 		setIsPortrait();
@@ -46,19 +54,15 @@ export default function Gallery({ children }) {
 		}
 	}
 
-	const style = {};
-	if (isPortrait) {
-		style.marginTop = `${pad}px`;
-	} else {
-		style.marginLeft = `${pad}px`;
-	}
+	const prop = isPortrait ? 'marginTop' : 'marginLeft';
+	
 
 	return (
 		<div className={styles.gallery}>
 			<div className={styles.gallery_background}></div>
 			
 			<div className={styles.gallery_wrapper}>
-				<div className={styles.gallery_content} ref={colorsCont} style={style}>
+				<div className={styles.gallery_content} ref={colorsCont} style={{ [prop]: `${pad}px` }}>
 					{children}
 				</div>
 			</div>
