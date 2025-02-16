@@ -1,4 +1,4 @@
-import { createSlice, nanoid } from '@reduxjs/toolkit';
+import { createSlice, nanoid, createSelector } from '@reduxjs/toolkit';
 import Storage, { LocalStorage } from '../../storage.js';
 
 const lstore = new LocalStorage();
@@ -131,7 +131,10 @@ export default colorsSlice.reducer;
 
 export const selectCurrentColors = (state) => state.colors.current;
 export const selectSavedColors = (state) => state.colors.saved;
-export const selectSavedColorsHashes = (state) => state.colors.saved.map(set => set.colors);
+export const selectSavedColorsHashes = createSelector(
+	[selectSavedColors],
+	(colors) => colors.map(set => set.colors)
+);
 
 
 function getInitialColors() {
